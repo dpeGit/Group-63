@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour {
+public class SlashAttack: MonoBehaviour {
 
     private bool isAttacking = false;
     private float attackTimer = 0f;
@@ -20,9 +20,12 @@ public class PlayerAttack : MonoBehaviour {
                 attackTimer = attackCD;
 
                 Collider2D[] hitObjects = Physics2D.OverlapCircleAll(new Vector2(transform.position.x - range, transform.position.y), range);
-                for(int i = 1; i < hitObjects.Length; i++)
+                for(int i = 0; i < hitObjects.Length; i++)
                 {
-                    Debug.Log("Hit " + hitObjects[i].name);
+                    if (hitObjects[i].tag == "Enemy")
+                    {
+                        Debug.Log("Slash hit " + hitObjects[i].name);
+                    }
                 }
             }
             else if(Input.GetAxis("Fire1") == 1)
@@ -31,9 +34,12 @@ public class PlayerAttack : MonoBehaviour {
                 attackTimer = attackCD;
 
                 Collider2D[] hitObjects = Physics2D.OverlapCircleAll(new Vector2(transform.position.x + range, transform.position.y), range);
-                for (int i = 1; i < hitObjects.Length; i++)
+                for (int i = 0; i < hitObjects.Length; i++)
                 {
-                    Debug.Log("Hit " + hitObjects[i].name);
+                    if (hitObjects[i].tag == "Enemy")
+                    {
+                        Debug.Log("Slash hit " + hitObjects[i].name);
+                    }
                 }
             }
             else if (Input.GetAxis("Fire2") == 1)
@@ -42,9 +48,12 @@ public class PlayerAttack : MonoBehaviour {
                 attackTimer = attackCD;
 
                 Collider2D[] hitObjects = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y + range), range);
-                for (int i = 1; i < hitObjects.Length; i++)
+                for (int i = 0; i < hitObjects.Length; i++)
                 {
-                    Debug.Log("Hit " + hitObjects[i].name);
+                    if (hitObjects[i].tag == "Enemy")
+                    {
+                        Debug.Log("Slash hit " + hitObjects[i].name);
+                    }
                 }
             }
             else if (Input.GetAxis("Fire2") == -1)
@@ -53,9 +62,12 @@ public class PlayerAttack : MonoBehaviour {
                 attackTimer = attackCD;
 
                 Collider2D[] hitObjects = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y - range), range);
-                for (int i = 1; i < hitObjects.Length; i++)
+                for (int i = 0; i < hitObjects.Length; i++)
                 {
-                    Debug.Log("Hit " + hitObjects[i].name);
+                    if (hitObjects[i].tag == "Enemy")
+                    {
+                        Debug.Log("Slash hit " + hitObjects[i].name);
+                    }
                 }
             }
         }
@@ -79,5 +91,6 @@ public class PlayerAttack : MonoBehaviour {
         Gizmos.DrawSphere(new Vector3(transform.position.x + range, transform.position.y, transform.position.z), range);
         Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - range, transform.position.z), range);
         Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y + range, transform.position.z), range);
-    }*/
+    }
+    */
 }

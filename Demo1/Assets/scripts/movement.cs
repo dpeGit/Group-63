@@ -26,6 +26,10 @@ public class movement : MonoBehaviour {
         else
         {
             playerMovement = new Vector2(moveHoriz, moveVert);
+            if (playerMovement.magnitude > 1 || playerMovement.magnitude < -1)
+            {
+                playerMovement.Normalize();
+            }
             player.velocity = playerMovement * speed;
         }
     }
