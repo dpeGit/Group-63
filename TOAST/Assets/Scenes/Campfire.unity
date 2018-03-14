@@ -303,6 +303,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Panel: {fileID: 241844919}
+  paused: 0
+  ResumeButton: {fileID: 2011628675}
+  Temple: {fileID: 0}
 --- !u!1 &485558541
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,3 +569,9 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8b394779a863de140a329b9de47d823e, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &2011628675 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114054855537918932, guid: 8b394779a863de140a329b9de47d823e,
+    type: 2}
+  m_PrefabInternal: {fileID: 2011628674}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}

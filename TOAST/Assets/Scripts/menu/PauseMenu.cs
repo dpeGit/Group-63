@@ -18,12 +18,14 @@ public class PauseMenu : MonoBehaviour {
             {
                 Panel.gameObject.SetActive(false);
                 paused = false;
+                Time.timeScale = 1f;
                 Temple.Select();
             }
             else
             {
                 Panel.gameObject.SetActive(true);
                 paused = true;
+                Time.timeScale = 0f;
                 ResumeButton.Select();
             }
         }
@@ -34,7 +36,8 @@ public class PauseMenu : MonoBehaviour {
     {
         Panel.gameObject.SetActive(false);
         paused = false;
-        Temple.Select();
+        //Temple.Select();
+        Time.timeScale = 1f;
     }
 
     public void Exit()
