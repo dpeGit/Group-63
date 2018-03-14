@@ -282,13 +282,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\player\CameraController.cs" />
+    <Compile Include="Assets\player\Movement.cs" />
+    <Compile Include="Assets\player\SwtichAttacks.cs" />
     <Compile Include="Assets\Scripts\enemy\EnemyChase.cs" />
     <Compile Include="Assets\Scripts\menu\LevelSelect.cs" />
     <Compile Include="Assets\Scripts\menu\MainMenu.cs" />
     <Compile Include="Assets\Scripts\menu\PauseMenu.cs" />
-    <Compile Include="Assets\Scripts\player\CameraController.cs" />
-    <Compile Include="Assets\Scripts\player\Movement.cs" />
-    <Compile Include="Assets\Scripts\player\SwtichAttacks.cs" />
     <Compile Include="Assets\Scripts\weapons\SlashAttack.cs" />
     <Compile Include="Assets\Scripts\weapons\StabAttack.cs" />
   </ItemGroup>
