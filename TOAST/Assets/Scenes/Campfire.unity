@@ -543,6 +543,26 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114054855537918932, guid: 8b394779a863de140a329b9de47d823e,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 399663641}
+    - target: {fileID: 114054855537918932, guid: 8b394779a863de140a329b9de47d823e,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Resume
+      objectReference: {fileID: 0}
+    - target: {fileID: 114207820092170774, guid: 8b394779a863de140a329b9de47d823e,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 399663641}
+    - target: {fileID: 114207820092170774, guid: 8b394779a863de140a329b9de47d823e,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Exit
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8b394779a863de140a329b9de47d823e, type: 2}
   m_IsPrefabParent: 0
