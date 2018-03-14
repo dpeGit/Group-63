@@ -11,7 +11,12 @@ public class PauseMenu : MonoBehaviour {
     public bool paused;
     public Button ResumeButton, Temple;
 
-	void Update () {
+    private void Awake()
+    {
+        Time.timeScale = 1f;
+    }
+
+    void Update () {
         if (Input.GetKeyDown("escape"))
         {
             if (paused)

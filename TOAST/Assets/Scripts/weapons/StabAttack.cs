@@ -6,10 +6,20 @@ public class StabAttack: MonoBehaviour {
 
     private bool isAttacking = false;
     private float attackTimer = 0f;
+    private float[] hitPackage;
 
     public float attackCD;
     public float radius;
     public float range;
+    public float damage;
+    public float knockback;
+
+    private void Start()
+    {
+        hitPackage = new float[2];
+        hitPackage[0] = damage;
+        hitPackage[1] = knockback;
+    }
 
     private void Update()
     {
@@ -26,6 +36,7 @@ public class StabAttack: MonoBehaviour {
                     if (hitObjects[i].collider.tag == "Enemy")
                     {
                         Debug.Log("Stab hit " + hitObjects[i].collider.name);
+                        hitObjects[i].collider.SendMessage("damage", hitPackage);
                     }
                 }
             }
@@ -40,6 +51,8 @@ public class StabAttack: MonoBehaviour {
                     if (hitObjects[i].collider.tag == "Enemy")
                     {
                         Debug.Log("Stab hit " + hitObjects[i].collider.name);
+                        hitObjects[i].collider.SendMessage("damage", hitPackage);
+
                     }
                 }
             }
@@ -54,6 +67,8 @@ public class StabAttack: MonoBehaviour {
                     if (hitObjects[i].collider.tag == "Enemy")
                     {
                         Debug.Log("Stab hit " + hitObjects[i].collider.name);
+                        hitObjects[i].collider.SendMessage("damage", hitPackage);
+
                     }
                 }
             }
@@ -68,6 +83,8 @@ public class StabAttack: MonoBehaviour {
                     if (hitObjects[i].collider.tag == "Enemy")
                     {
                         Debug.Log("Stab hit " + hitObjects[i].collider.name);
+                        hitObjects[i].collider.SendMessage("damage", hitPackage);
+
                     }
                 }
             }
@@ -85,7 +102,7 @@ public class StabAttack: MonoBehaviour {
         }
     }
     //uncoment this function if you need to check ranges
-    /*
+    
     private void OnDrawGizmosSelected()
     {
         //left hitbox
@@ -108,5 +125,5 @@ public class StabAttack: MonoBehaviour {
         Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - radius - range, transform.position.z), radius);
         Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y - range, transform.position.z));
     }
-    */
+        
 }

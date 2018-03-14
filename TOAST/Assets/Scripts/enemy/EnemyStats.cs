@@ -8,7 +8,6 @@ public class EnemyStats : MonoBehaviour {
     public float speed;
     public float mass;
     public float expValue;
-    public float knockbackTimer;
 
     private Rigidbody2D rgbd;
     private EnemyChase script;
@@ -19,7 +18,6 @@ public class EnemyStats : MonoBehaviour {
         script = GetComponent<EnemyChase>();
         rgbd.mass = mass;
         script.speed = speed;
-        script.knockbackTimer = knockbackTimer;
 	}
 
     void damage(float[] results)

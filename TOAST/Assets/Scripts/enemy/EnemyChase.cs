@@ -8,13 +8,33 @@ public class EnemyChase : MonoBehaviour {
     public float speed;
 
     private Rigidbody2D enemy;
-
+    private float knockbackCD;
+    private bool isKnockBack;
     private void Start()
     {
         enemy = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate () {
-         enemy.velocity = (player.transform.position - enemy.transform.position).normalized * speed;
+        if (!isKnockBack)
+        {
+            enemy.velocity = (player.transform.position - enemy.transform.position).normalized * speed;
+        }
+        else
+        {
+            knockbackCD -= Time.deltaTime;
+            if(knockbackCD <= 0)
+            {
+                isKnockBack = false;
+            }
+        }
 	}
+
+    void knockback(float knockback)
+    {
+        isKnockBack = true;
+        enemy.velocity = Vector2.zero;
+        enemy.AddForce(-(player.transform.position - enemy.transform.position).normalized * knockback);
+        knockbackCD = knockback/500;
+    }
 }
