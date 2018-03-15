@@ -117,6 +117,7 @@ MonoBehaviour:
   speed: 1
   mass: 0.5
   expValue: 100
+  player: {fileID: 0}
 --- !u!212 &212277522835618322
 SpriteRenderer:
   m_ObjectHideFlags: 1

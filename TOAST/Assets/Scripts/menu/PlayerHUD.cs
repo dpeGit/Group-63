@@ -13,11 +13,11 @@ public class PlayerHUD : MonoBehaviour {
     void Start()
     {
         player = GameObject.Find("player");
-        playerText = player.GetComponent<PlayerStats>();
+        playerStats = player.GetComponent<PlayerStats>();
     }
 
 	void Update () {
-        expSlider.value = playerStats.exp / playerStats.expNeeded * 100;
+        expSlider.value = (playerStats.exp / (float)playerStats.expNeeded) * 100;
         level.text = playerStats.level.ToString();
         exp.text = playerStats.exp.ToString();
         expNeeded.text = playerStats.expNeeded.ToString();

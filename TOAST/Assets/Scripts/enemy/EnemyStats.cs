@@ -7,13 +7,18 @@ public class EnemyStats : MonoBehaviour {
     public float health;
     public float speed;
     public float mass;
-    public float expValue;
+    public int expValue;
+    public GameObject player;
 
     private Rigidbody2D rgbd;
     private EnemyChase script;
 
+    PlayerStats playerStats;
+
 	// Sets variables
 	void Start () {
+        player = GameObject.Find("player");
+        playerStats = player.GetComponent<PlayerStats>();
         rgbd = GetComponent<Rigidbody2D>();
         script = GetComponent<EnemyChase>();
         rgbd.mass = mass;
@@ -31,6 +36,7 @@ public class EnemyStats : MonoBehaviour {
         if (health <= 0)
         {
             gameObject.SetActive(false);
+            playerStats.exp += expValue;
         }
     }
 
