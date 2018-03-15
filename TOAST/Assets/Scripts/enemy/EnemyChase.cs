@@ -13,6 +13,7 @@ public class EnemyChase : MonoBehaviour {
     private void Start()
     {
         enemy = GetComponent<Rigidbody2D>();
+        player = GameObject.Find("player");
     }
 
     void FixedUpdate () {
