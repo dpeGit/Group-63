@@ -11,19 +11,20 @@ public class CameraController : MonoBehaviour {
 
     private float rightBound, leftBound, upperBound, lowerBound;
 
-    // Use this for initialization
+    // Finds the bounds of the floor
     void Start ()
     {
         float vertExtent = Camera.main.orthographicSize;
         float horzExtent = vertExtent * Screen.width / Screen.height;
 
-        leftBound =  horzExtent - cameraBounds.sprite.bounds.size.x * (floorScaleX / 2f);
+        //TODO replace floorScale(X,Y) with somehting that automatically grabs floor and wall scales
+        leftBound = horzExtent - cameraBounds.sprite.bounds.size.x * (floorScaleX / 2f);
         rightBound = cameraBounds.sprite.bounds.size.x * (floorScaleX / 2f) - horzExtent;
         lowerBound = vertExtent - cameraBounds.sprite.bounds.size.y * (floorScaleY / 2f);
         upperBound = cameraBounds.sprite.bounds.size.y * (floorScaleY / 2f) - vertExtent;
     }
 	
-	// Update is called once per frame
+	// Sets the camera to the player's position unless it would move outside of the bounds
 	void Update ()
     {
         Vector2 position = player.transform.position;

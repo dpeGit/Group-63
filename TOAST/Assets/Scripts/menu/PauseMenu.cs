@@ -11,11 +11,13 @@ public class PauseMenu : MonoBehaviour {
     public bool paused;
     public Button ResumeButton, Temple;
 
+
     private void Awake()
     {
         Time.timeScale = 1f;
     }
 
+    //when escape is pressed pauses game or resumes it
     void Update () {
         if (Input.GetKeyDown("escape"))
         {

@@ -12,7 +12,7 @@ public class EnemyStats : MonoBehaviour {
     private Rigidbody2D rgbd;
     private EnemyChase script;
 
-	// Use this for initialization
+	// Sets variables
 	void Start () {
         rgbd = GetComponent<Rigidbody2D>();
         script = GetComponent<EnemyChase>();
@@ -20,6 +20,9 @@ public class EnemyStats : MonoBehaviour {
         script.speed = speed;
 	}
 
+    //takes damage when hit by player
+    //when health is 0 gameobject is disabled
+    //calls knockback
     void damage(float[] results)
     {
         health -= results[0];

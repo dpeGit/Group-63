@@ -9,16 +9,18 @@ public class Movement: MonoBehaviour {
     private Rigidbody2D player;
     private Vector2 playerMovement;
 
-	// Use this for initialization
+	// Sets variables
 	void Start () {
         player = GetComponent<Rigidbody2D>();
 	}
 
+    //grabs user input and sets player velocity
     void FixedUpdate()
     {
         float moveHoriz = Input.GetAxis("Horizontal");
         float moveVert = Input.GetAxis("Vertical");
 
+        //if there is no inputs velocity is set to 0 to avoid ice skakting
         if (moveHoriz == 0 && moveVert == 0)
         {
             player.velocity = Vector2.zero;
@@ -26,7 +28,7 @@ public class Movement: MonoBehaviour {
         else
         {
             playerMovement = new Vector2(moveHoriz, moveVert);
-            if (playerMovement.magnitude > 1 || playerMovement.magnitude < -1)
+            if (playerMovement.magnitude > 1 || playerMovement.magnitude < -1) //TODO i think this will be a problem with a gamepad giving axis inputs < 1 unsure
             {
                 playerMovement.Normalize();
             }
