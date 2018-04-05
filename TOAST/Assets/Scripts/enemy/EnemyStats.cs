@@ -7,6 +7,8 @@ public class EnemyStats : MonoBehaviour {
     public float health;
     public float speed;
     public float mass;
+    public float damageOnHit;
+    public float damageCD;
     public int expValue;
     public GameObject player;
 
@@ -23,6 +25,8 @@ public class EnemyStats : MonoBehaviour {
         script = GetComponent<EnemyChase>();
         rgbd.mass = mass;
         script.speed = speed;
+        script.damageOnHit = damageOnHit;
+        script.damageCD = damageCD;
 	}
 
     //takes damage when hit by player
@@ -39,5 +43,7 @@ public class EnemyStats : MonoBehaviour {
             playerStats.exp += expValue;
         }
     }
-
+    private void Update()
+    {
+    }
 }

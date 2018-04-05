@@ -116,6 +116,7 @@ MonoBehaviour:
   health: 100
   speed: 1
   mass: 0.5
+  damageOnHit: 10
   expValue: 100
   player: {fileID: 0}
 --- !u!212 &212277522835618322

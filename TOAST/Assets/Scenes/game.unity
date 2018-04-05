@@ -1439,7 +1439,7 @@ MonoBehaviour:
   attackCD: 1
   range: 0.7
   damage: 50
-  knockback: 300
+  knockback: 3000
 --- !u!212 &1526700430
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1753,8 +1753,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exp: 0
-  expNeeded: 0
+  expNeeded: -641
   level: 0
+  health: 1000
 --- !u!1 &1697649672
 GameObject:
   m_ObjectHideFlags: 0
