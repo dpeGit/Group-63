@@ -65,7 +65,7 @@ public class StabAttack: MonoBehaviour {
             RaycastHit2D[] hitObjects = Physics2D.CircleCastAll(transform.position, radius, Vector2.left, range);//draws a hitbox
             for (int i = 0; i < hitObjects.Length; i++)//cycles throuhg the enemeys hit and looks for tag "enemy"
             {
-                if (hitObjects[i].collider.tag == "Enemy")
+                if (hitObjects[i].collider.tag == "enemy")
                 {
                     Debug.Log("Stab hit " + hitObjects[i].collider.name);
                     hitObjects[i].collider.SendMessage("damage", hitPackage);//sends damage
@@ -82,7 +82,7 @@ public class StabAttack: MonoBehaviour {
             RaycastHit2D[] hitObjects = Physics2D.CircleCastAll(transform.position, radius, Vector2.right, range);
             for (int i = 0; i < hitObjects.Length; i++)
             {
-                if (hitObjects[i].collider.tag == "Enemy")
+                if (hitObjects[i].collider.tag == "enemy")
                 {
                     Debug.Log("Stab hit " + hitObjects[i].collider.name);
                     hitObjects[i].collider.SendMessage("damage", hitPackage);
@@ -101,7 +101,7 @@ public class StabAttack: MonoBehaviour {
             RaycastHit2D[] hitObjects = Physics2D.CircleCastAll(transform.position, radius, Vector2.up, range);
             for (int i = 0; i < hitObjects.Length; i++)
             {
-                if (hitObjects[i].collider.tag == "Enemy")
+                if (hitObjects[i].collider.tag == "enemy")
                 {
                     Debug.Log("Stab hit " + hitObjects[i].collider.name);
                     hitObjects[i].collider.SendMessage("damage", hitPackage);
@@ -120,7 +120,7 @@ public class StabAttack: MonoBehaviour {
             RaycastHit2D[] hitObjects = Physics2D.CircleCastAll(transform.position, radius, Vector2.down, range);
             for (int i = 0; i < hitObjects.Length; i++)
             {
-                if (hitObjects[i].collider.tag == "Enemy")
+                if (hitObjects[i].collider.tag == "enemy")
                 {
                     Debug.Log("Stab hit " + hitObjects[i].collider.name);
                     hitObjects[i].collider.SendMessage("damage", hitPackage);

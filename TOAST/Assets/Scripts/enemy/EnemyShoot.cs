@@ -2,19 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyChase : MonoBehaviour {
+public class EnemyShoot : MonoBehaviour {
 
+    public GameObject projectile;
     public float speed;
     public float contactDamage;
     public float contactCD;
+    public float fireRange;
+    public float fireCD;
+    public float projectileSpeed;
+    public float projectileDamage;
     public float health;
     public int expValue;
 
-    private GameObject player;
     private Rigidbody2D enemy;
+    private GameObject player;
     private float knockbackCD;
     private bool isKnockBack;
     private float contactTimer = 0f;
+    private float fireTimer = 0f;
 
     //assigned varaibles
     private void Start()
@@ -40,20 +46,44 @@ public class EnemyChase : MonoBehaviour {
     }
 
     //moves the enemy towards the player unless it is knocked back in which case calls the knockback function
-    void FixedUpdate () {
+    void FixedUpdate()
+    {
         if (!isKnockBack)
         {
-            enemy.velocity = (player.transform.position - enemy.transform.position).normalized * speed;
+            if (Vector2.Distance(player.transform.position, enemy.transform.position) >= fireRange)
+            {
+                enemy.velocity = (player.transform.position - enemy.transform.position).normalized * speed;
+            }
+            else
+            {
+                fireProjectile();
+            }
         }
         else
         {
             knockbackCD -= Time.deltaTime;
-            if(knockbackCD <= 0)
+            if (knockbackCD <= 0)
             {
                 isKnockBack = false;
             }
         }
-	}
+    }
+
+    void fireProjectile()
+    {
+        if (fireTimer <= 0)
+        {
+            GameObject clone;
+            clone = Instantiate(projectile, enemy.transform.position, new Quaternion(0, 0, 0, 0));
+            clone.GetComponent<projectileContact>().projectileDamage = projectileDamage;
+            clone.GetComponent<Rigidbody2D>().velocity = (player.transform.position - enemy.transform.position).normalized * projectileSpeed;
+            fireTimer = fireCD;
+        }
+        else
+        {
+            fireTimer -= Time.deltaTime;
+        }
+    }
 
     //takes a varaiable knockback (based off the weapon) then applies a force in the opposite direction from the player
     //also stunned for a duration based off the weapon
@@ -62,7 +92,7 @@ public class EnemyChase : MonoBehaviour {
         isKnockBack = true;
         enemy.velocity = Vector2.zero;
         enemy.AddForce(-(player.transform.position - enemy.transform.position).normalized * knockback);
-        knockbackCD = knockback/500; //TODO temporrary function
+        knockbackCD = knockback / 500; //TODO temporrary function
     }
 
     void damage(float[] results)

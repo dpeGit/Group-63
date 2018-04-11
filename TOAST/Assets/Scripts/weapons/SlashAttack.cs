@@ -62,7 +62,7 @@ public class SlashAttack: MonoBehaviour {
             Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, range); //draws a hitbox
             for (int i = 0; i < hitObjects.Length; i++) //cycles throuhg the enemeys hit and looks for tag "enemy"
             {
-                if (hitObjects[i].tag == "Enemy")
+                if (hitObjects[i].tag == "enemy")
                 {
                     Debug.Log("Slash hit " + hitObjects[i].name);
                     hitObjects[i].SendMessage("damage", hitPackage); //sends damage
@@ -78,7 +78,7 @@ public class SlashAttack: MonoBehaviour {
             Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, range);
             for (int i = 0; i < hitObjects.Length; i++)
             {
-                if (hitObjects[i].tag == "Enemy")
+                if (hitObjects[i].tag == "enemy")
                 {
                     Debug.Log("Slash hit " + hitObjects[i].name);
                     hitObjects[i].SendMessage("damage", hitPackage);
@@ -94,7 +94,7 @@ public class SlashAttack: MonoBehaviour {
             Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, range);
             for (int i = 0; i < hitObjects.Length; i++)
             {
-                if (hitObjects[i].tag == "Enemy")
+                if (hitObjects[i].tag == "enemy")
                 {
                     Debug.Log("Slash hit " + hitObjects[i].name);
                     hitObjects[i].SendMessage("damage", hitPackage);
@@ -110,7 +110,7 @@ public class SlashAttack: MonoBehaviour {
             Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, range);
             for (int i = 0; i < hitObjects.Length; i++)
             {
-                if (hitObjects[i].tag == "Enemy")
+                if (hitObjects[i].tag == "enemy")
                 {
                     Debug.Log("Slash hit " + hitObjects[i].name);
                     hitObjects[i].SendMessage("damage", hitPackage);
