@@ -11,9 +11,8 @@ public class Inventory : MonoBehaviour {
 
     void onPickup(GameObject item)
     {
-        if (item.tag == "weapon")
-            Array.find[]
+       // if (item.tag == "weapon")
+            //Array.find[]
     }
-
 
 }
