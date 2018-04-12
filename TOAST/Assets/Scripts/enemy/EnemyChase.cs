@@ -23,24 +23,12 @@ public class EnemyChase : MonoBehaviour {
         player = GameObject.Find("player");
     }
 
-    private void Update()
-    {
-        if (contactTimer <= 0)
-        {
-            if (enemy.IsTouching(player.GetComponent<Collider2D>()))
-            {
-                player.SendMessage("playerDamage", contactDamage);
-                contactTimer = contactCD;
-            }
-        }
-        else
-        {
-            contactTimer -= Time.deltaTime;
-        }
-    }
-
     //moves the enemy towards the player unless it is knocked back in which case calls the knockback function
-    void FixedUpdate () {
+    void FixedUpdate ()
+    {
+        cooldowns();
+        contact();
+
         if (!isKnockBack)
         {
             enemy.velocity = (player.transform.position - enemy.transform.position).normalized * speed;
@@ -54,6 +42,23 @@ public class EnemyChase : MonoBehaviour {
             }
         }
 	}
+
+    private void cooldowns()
+    {
+        contactTimer -= Time.deltaTime;
+    }
+
+    private void contact()
+    {
+        if (contactTimer <= 0)
+        {
+            if (enemy.IsTouching(player.GetComponent<Collider2D>()))
+            {
+                player.SendMessage("playerDamage", contactDamage);
+                contactTimer = contactCD;
+            }
+        }
+    }
 
     //takes a varaiable knockback (based off the weapon) then applies a force in the opposite direction from the player
     //also stunned for a duration based off the weapon

@@ -31,23 +31,14 @@ public class EnemyShoot : MonoBehaviour {
 
     private void Update()
     {
-        if (contactTimer <= 0)
-        {
-            if (enemy.IsTouching(player.GetComponent<Collider2D>()))
-            {
-                player.SendMessage("playerDamage", contactDamage);
-                contactTimer = contactCD;
-            }
-        }
-        else
-        {
-            contactTimer -= Time.deltaTime;
-        }
     }
 
     //moves the enemy towards the player unless it is knocked back in which case calls the knockback function
     void FixedUpdate()
     {
+        cooldowns();
+        contact();
+
         if (!isKnockBack)
         {
             if (Vector2.Distance(player.transform.position, enemy.transform.position) >= fireRange)
@@ -69,7 +60,7 @@ public class EnemyShoot : MonoBehaviour {
         }
     }
 
-    void fireProjectile()
+    private void fireProjectile()
     {
         if (fireTimer <= 0)
         {
@@ -79,9 +70,17 @@ public class EnemyShoot : MonoBehaviour {
             clone.GetComponent<Rigidbody2D>().velocity = (player.transform.position - enemy.transform.position).normalized * projectileSpeed;
             fireTimer = fireCD;
         }
-        else
+    }
+
+    private void contact()
+    {
+        if (contactTimer <= 0)
         {
-            fireTimer -= Time.deltaTime;
+            if (enemy.IsTouching(player.GetComponent<Collider2D>()))
+            {
+                player.SendMessage("playerDamage", contactDamage);
+                contactTimer = contactCD;
+            }
         }
     }
 
@@ -105,5 +104,11 @@ public class EnemyShoot : MonoBehaviour {
             gameObject.SetActive(false);
             player.GetComponent<PlayerStats>().exp += expValue;
         }
+    }
+
+    private void cooldowns()
+    {
+        fireTimer -= Time.deltaTime;
+        contactTimer -= Time.deltaTime;
     }
 }

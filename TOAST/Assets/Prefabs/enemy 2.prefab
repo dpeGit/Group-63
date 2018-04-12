@@ -103,7 +103,7 @@ MonoBehaviour:
   speed: 1
   contactDamage: 10
   contactCD: 1
-  fireRange: 3
+  fireRange: 5
   fireCD: 3
   projectileSpeed: 5
   projectileDamage: 10
