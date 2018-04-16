@@ -485,7 +485,7 @@ GameObject:
   - component: {fileID: 148608646}
   - component: {fileID: 148608645}
   m_Layer: 5
-  m_Name: Item (12)
+  m_Name: Item13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -907,7 +907,7 @@ GameObject:
   - component: {fileID: 268338891}
   - component: {fileID: 268338890}
   m_Layer: 5
-  m_Name: Item (5)
+  m_Name: Item6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1343,7 +1343,7 @@ GameObject:
   - component: {fileID: 328790102}
   - component: {fileID: 328790101}
   m_Layer: 5
-  m_Name: Item (4)
+  m_Name: Item5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2255,7 +2255,7 @@ GameObject:
   - component: {fileID: 495166604}
   - component: {fileID: 495166603}
   m_Layer: 5
-  m_Name: Item (1)
+  m_Name: Item2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3184,7 +3184,7 @@ GameObject:
   - component: {fileID: 650350510}
   - component: {fileID: 650350509}
   m_Layer: 5
-  m_Name: Item (11)
+  m_Name: Item12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4379,7 +4379,7 @@ GameObject:
   - component: {fileID: 831187353}
   - component: {fileID: 831187352}
   m_Layer: 5
-  m_Name: Item (8)
+  m_Name: Item9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4686,7 +4686,7 @@ GameObject:
   - component: {fileID: 848723174}
   - component: {fileID: 848723173}
   m_Layer: 5
-  m_Name: Item (2)
+  m_Name: Item3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5314,7 +5314,7 @@ GameObject:
   - component: {fileID: 897677209}
   - component: {fileID: 897677208}
   m_Layer: 5
-  m_Name: Item (13)
+  m_Name: Item14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6261,7 +6261,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Option A
+  m_Text: Equip
 --- !u!222 &1026412142
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7038,7 +7038,7 @@ GameObject:
   - component: {fileID: 1117838757}
   - component: {fileID: 1117838756}
   m_Layer: 5
-  m_Name: Item (6)
+  m_Name: Item7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7570,7 +7570,7 @@ GameObject:
   - component: {fileID: 1182477914}
   - component: {fileID: 1182477913}
   m_Layer: 5
-  m_Name: Item (14)
+  m_Name: Item15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8014,7 +8014,7 @@ GameObject:
   - component: {fileID: 1270041115}
   - component: {fileID: 1270041114}
   m_Layer: 5
-  m_Name: Item (3)
+  m_Name: Item4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9921,7 +9921,7 @@ GameObject:
   - component: {fileID: 1549453261}
   - component: {fileID: 1549453260}
   m_Layer: 5
-  m_Name: Item (7)
+  m_Name: Item8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11255,7 +11255,7 @@ GameObject:
   - component: {fileID: 1755640485}
   - component: {fileID: 1755640484}
   m_Layer: 5
-  m_Name: Item (9)
+  m_Name: Item10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11529,7 +11529,7 @@ GameObject:
   - component: {fileID: 1785057122}
   - component: {fileID: 1785057121}
   m_Layer: 5
-  m_Name: Item
+  m_Name: Item1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11837,7 +11837,7 @@ GameObject:
   - component: {fileID: 1825625614}
   - component: {fileID: 1825625613}
   m_Layer: 5
-  m_Name: Item (10)
+  m_Name: Item11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13041,6 +13041,7 @@ GameObject:
   - component: {fileID: 2001225019}
   - component: {fileID: 2001225021}
   - component: {fileID: 2001225020}
+  - component: {fileID: 2001225022}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -13102,6 +13103,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2001225018}
+--- !u!114 &2001225022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2001225018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7f68ebebcf259440b39dc76115b2679, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  empty: {fileID: 0}
 --- !u!1 &2016786928
 GameObject:
   m_ObjectHideFlags: 0
