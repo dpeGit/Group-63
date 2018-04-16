@@ -38,6 +38,7 @@ public class Inventory : MonoBehaviour {
 
     void onPickup(GameObject item)
     {
+<<<<<<< HEAD
         int loc = 0;
 
         if (item.tag == "weapon")
@@ -56,4 +57,10 @@ public class Inventory : MonoBehaviour {
 
     }
 
+=======
+       // if (item.tag == "weapon")
+            //Array.find[]
+    }
+
+>>>>>>> 252c2c4cf03459ebc9377e682c40ca9944979810
 }
