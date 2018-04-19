@@ -7,7 +7,7 @@ TagManager:
   - wall
   - player
   - enemy
-  - empty
+  - weapon
   layers:
   - Default
   - TransparentFX

@@ -78,7 +78,7 @@ public class EnemyChase : MonoBehaviour {
         if (health <= 0)
         {
             gameObject.SetActive(false);
-            player.GetComponent<PlayerStats>().exp += expValue;
+            player.SendMessage("expGain", expValue);
         }
     }
 }

@@ -362,7 +362,7 @@ GameObject:
   - component: {fileID: 502057116}
   m_Layer: 0
   m_Name: ranged
-  m_TagString: Untagged
+  m_TagString: weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -986,7 +986,7 @@ GameObject:
   - component: {fileID: 843262821}
   m_Layer: 0
   m_Name: dagger
-  m_TagString: Untagged
+  m_TagString: weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1015,11 +1015,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cdc27faf0ae3c8469bdd3ebc94718e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCD: 0.1
+  baseAttackCD: 1
+  attackSpeedMult: 2
   radius: 0.1
   range: 0.7
-  damage: 10
+  baseDamage: 20
+  strengthMult: 0.1
+  agilityMult: 1.5
   knockback: 50
+  damage: 0
+  attackCD: 0
 --- !u!212 &843262821
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1816,7 +1821,7 @@ GameObject:
   - component: {fileID: 1526700430}
   m_Layer: 0
   m_Name: axe
-  m_TagString: Untagged
+  m_TagString: weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1845,10 +1850,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba3bc34d60746ad4bbb8eecbefe89137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCD: 1
+  baseAttackCD: 3
+  attackSpeedMult: 0.9
   range: 0.7
-  damage: 50
+  baseDamage: 30
+  strengthMult: 2
+  agilityMult: 0
   knockback: 300
+  damage: 0
+  attackCD: 0
 --- !u!212 &1526700430
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2059,7 +2069,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6475d918c2e790a458b8c0e64ae72751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  baseSpeed: 1
+  speed: 1
 --- !u!212 &1695786300
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2165,9 +2176,18 @@ MonoBehaviour:
   exp: 0
   expNeeded: -641
   level: 1
-  currentHealth: 100
-  maxHealth: 100
+  runSpeedMult: 1
+  currentHealth: 0
+  maxHealth: 0
+  baseHealth: 100
   regenTime: 5
+  baseRegenAmount: 5
+  regenMult: 0.3
+  strength: 1
+  agility: 1
+  attackSpeed: 1
+  mana: 0
+  regenAmount: 0
 --- !u!1 &1697649672
 GameObject:
   m_ObjectHideFlags: 0

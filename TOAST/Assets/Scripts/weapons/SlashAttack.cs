@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class SlashAttack: MonoBehaviour {
 
-    public float attackCD;
+    public float baseAttackCD, attackSpeedMult;
     public float range;
-    public float damage;
+    public float baseDamage, strengthMult, agilityMult;
     public float knockback;
 
     private bool isAttacking = false;
     private float attackTimer = 0f;
-    private float[] hitPackage;
+    public float damage;//public for testing
+    public float attackCD;//public for testing
     private GameObject player;
     private SpriteRenderer display;
 
     //sets varaibles disables the display for the weapon by default, sets the scale of the weapon to match range
     private void Start()
     {
-        hitPackage = new float[2];
-        hitPackage[0] = damage;
-        hitPackage[1] = knockback;
         player = GameObject.Find("player");
+        updateStats();
         display = GetComponent<SpriteRenderer>();
         display.enabled = false;
         transform.localScale = new Vector3(2 * range, 2 * range, 0);//TODO stop gap measure for demo should not be needed with proper sprites
@@ -60,14 +59,7 @@ public class SlashAttack: MonoBehaviour {
 
             transform.position = new Vector2(transform.position.x - range, transform.position.y); //changes the postion of the object to the attack area
             Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, range); //draws a hitbox
-            for (int i = 0; i < hitObjects.Length; i++) //cycles throuhg the enemeys hit and looks for tag "enemy"
-            {
-                if (hitObjects[i].tag == "enemy")
-                {
-                    Debug.Log("Slash hit " + hitObjects[i].name);
-                    hitObjects[i].SendMessage("damage", hitPackage); //sends damage
-                }
-            }
+            sendDamage(hitObjects);
         }
         else if (Input.GetAxis("Fire1") == 1)
         {
@@ -76,14 +68,7 @@ public class SlashAttack: MonoBehaviour {
 
             transform.position = new Vector2(transform.position.x + range, transform.position.y);
             Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, range);
-            for (int i = 0; i < hitObjects.Length; i++)
-            {
-                if (hitObjects[i].tag == "enemy")
-                {
-                    Debug.Log("Slash hit " + hitObjects[i].name);
-                    hitObjects[i].SendMessage("damage", hitPackage);
-                }
-            }
+            sendDamage(hitObjects);
         }
         else if (Input.GetAxis("Fire2") == 1)
         {
@@ -92,14 +77,7 @@ public class SlashAttack: MonoBehaviour {
 
             transform.position = new Vector2(transform.position.x, transform.position.y + range);
             Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, range);
-            for (int i = 0; i < hitObjects.Length; i++)
-            {
-                if (hitObjects[i].tag == "enemy")
-                {
-                    Debug.Log("Slash hit " + hitObjects[i].name);
-                    hitObjects[i].SendMessage("damage", hitPackage);
-                }
-            }
+            sendDamage(hitObjects);
         }
         else if (Input.GetAxis("Fire2") == -1)
         {
@@ -108,15 +86,27 @@ public class SlashAttack: MonoBehaviour {
 
             transform.position = new Vector2(transform.position.x, transform.position.y - range);
             Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, range);
-            for (int i = 0; i < hitObjects.Length; i++)
+            sendDamage(hitObjects);
+        }
+    }
+
+    private void sendDamage(Collider2D[] hitObjects)
+    {
+        float[] hitPackage = new float[2] { damage, knockback };
+        for (int i = 0; i < hitObjects.Length; i++) //cycles throuhg the enemeys hit and looks for tag "enemy"
+        {
+            if (hitObjects[i].tag == "enemy")
             {
-                if (hitObjects[i].tag == "enemy")
-                {
-                    Debug.Log("Slash hit " + hitObjects[i].name);
-                    hitObjects[i].SendMessage("damage", hitPackage);
-                }
+                Debug.Log("Slash hit " + hitObjects[i].name);
+                hitObjects[i].SendMessage("damage", hitPackage); //sends damage
             }
         }
+    }
+
+    public void updateStats()
+    {
+        damage = baseDamage * strengthMult * player.GetComponent<PlayerStats>().strength + baseDamage * agilityMult * player.GetComponent<PlayerStats>().agility;
+        attackCD = baseAttackCD * (1/(attackSpeedMult * player.GetComponent<PlayerStats>().attackSpeed));
     }
     //uncoment this function if you need to check ranges
     /*

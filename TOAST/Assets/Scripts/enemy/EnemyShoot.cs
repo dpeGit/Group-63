@@ -97,12 +97,12 @@ public class EnemyShoot : MonoBehaviour {
     void damage(float[] results)
     {
         health -= results[0];
-        knockback(results[1]);
+        knockback(results[1]);  
         Debug.Log(health);
         if (health <= 0)
         {
             gameObject.SetActive(false);
-            player.GetComponent<PlayerStats>().exp += expValue;
+            player.SendMessage("expGain", expValue);
         }
     }
 

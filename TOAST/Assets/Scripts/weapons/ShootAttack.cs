@@ -85,4 +85,9 @@ public class ShootAttack : MonoBehaviour {
             clone.GetComponent<Rigidbody2D>().velocity = Vector2.up * projectileSpeed;
         }
     }
+
+    void updateStats()
+    {
+
+    }
 }
