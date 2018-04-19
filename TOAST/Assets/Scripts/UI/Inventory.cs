@@ -6,12 +6,13 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour {
 
-    GameObject[] weapons = new GameObject[15];
-    GameObject[] Armor = new GameObject[15];
-    GameObject[] slots = new GameObject[15];
+    GameObject[] weapons = new GameObject[18];
+    GameObject[] Armor = new GameObject[18];
+    GameObject[] slots = new GameObject[18];
     
     public GameObject empty;
-    public GameObject equipped;
+    public GameObject item;
+    //public GameObject equipped;
 
     private string currentInv = "";
 
@@ -19,7 +20,7 @@ public class Inventory : MonoBehaviour {
     private void Start()
     {
         currentInv = "weapons";
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < 18; i++)
         {
             slots[i] = GameObject.Find("Item" + (i+1));
             weapons[i] = empty;
@@ -29,13 +30,36 @@ public class Inventory : MonoBehaviour {
     }
 
     // called when an item is equiped
-    void equip()
+    public void equip()
     {
 
     }
 
+    public void drop(int i)
+    {
+        weapons[i] = empty;
+        shift();
+        updateInv();
+    }
+
+    void shift()
+    {
+        if (currentInv.Equals("weapons"))
+        {
+            int i = 0;
+            while (i < 17)
+            {
+                if(weapons[i] = empty)
+                {
+                    weapons[i] = weapons[i + 1];
+                    weapons[i + 1] = empty;
+                    i += 1;
+                }
+            }
+        }
+    }
     // called when an item is picked up
-    void onPickup(GameObject item)
+    public void onPickup(GameObject item)
     {
         int loc = 0;
 
@@ -60,14 +84,25 @@ public class Inventory : MonoBehaviour {
     // updateInv makes it so that slots that have items are interactable, and slots that dont have items aren't
     void updateInv()
     {
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < 18; i++)
         {
+            //slots[i].GetComponent<Dropdown>().value = 3;
             if (currentInv.Equals("weapons"))
             {
                 if (weapons[i].CompareTag("empty"))
+                {
                     slots[i].GetComponent<Dropdown>().enabled = false;
+                    slots[i].GetComponent<Image>().overrideSprite = empty.GetComponent<Image>().sprite;
+                    slots[i].GetComponent<Image>().color = empty.GetComponent<Image>().color;
+                }
                 else
+                {
                     slots[i].GetComponent<Dropdown>().enabled = true;
+                    slots[i].GetComponent<Image>().overrideSprite = weapons[i].GetComponent<SpriteRenderer>().sprite;
+                    slots[i].GetComponent<Image>().color = weapons[i].GetComponent<SpriteRenderer>().color;
+                }
+                    
+
             }
             else if (currentInv.Equals("Armor"))
             {
@@ -85,7 +120,7 @@ public class Inventory : MonoBehaviour {
     // finds first empty object in the invenory so that it can be replaced when an item is picked up
     private int findFirstEmpty(GameObject[] inv)
     {
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < 18; i++)
         {
             if (inv[i].CompareTag("empty"))
                 return i;
