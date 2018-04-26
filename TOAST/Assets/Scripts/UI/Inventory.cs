@@ -9,9 +9,11 @@ public class Inventory : MonoBehaviour {
     GameObject[] weapons = new GameObject[18];
     GameObject[] Armor = new GameObject[18];
     GameObject[] slots = new GameObject[18];
+    Dropdown[] dropdowns = new Dropdown[18];
     
     public GameObject empty;
     public GameObject item;
+    public bool interactable;
     //public GameObject equipped;
 
     private string currentInv = "";
@@ -23,10 +25,19 @@ public class Inventory : MonoBehaviour {
         for (int i = 0; i < 18; i++)
         {
             slots[i] = GameObject.Find("Item" + (i+1));
+            dropdowns[i] = slots[i].GetComponent<Dropdown>();
             weapons[i] = empty;
             Armor[i] = empty;
         }
         updateInv();
+    }
+
+    public void optionSelected(int num)
+    {
+        if (slots[num].GetComponent<Dropdown>().value == 0)
+            equip();
+        if (slots[num].GetComponent<Dropdown>().value == 1)
+            drop(num);
     }
 
     // called when an item is equiped
@@ -49,12 +60,12 @@ public class Inventory : MonoBehaviour {
             int i = 0;
             while (i < 17)
             {
-                if(weapons[i] = empty)
+                if (weapons[i] == empty && weapons[i + 1] != empty)
                 {
                     weapons[i] = weapons[i + 1];
                     weapons[i + 1] = empty;
-                    i += 1;
                 }
+                i += 1;
             }
         }
     }
@@ -86,7 +97,7 @@ public class Inventory : MonoBehaviour {
     {
         for (int i = 0; i < 18; i++)
         {
-            //slots[i].GetComponent<Dropdown>().value = 3;
+            slots[i].GetComponent<Dropdown>().value = 2;
             if (currentInv.Equals("weapons"))
             {
                 if (weapons[i].CompareTag("empty"))
