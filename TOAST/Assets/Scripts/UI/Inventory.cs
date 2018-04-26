@@ -9,7 +9,6 @@ public class Inventory : MonoBehaviour {
     GameObject[] weapons = new GameObject[18];
     GameObject[] Armor = new GameObject[18];
     GameObject[] slots = new GameObject[18];
-    Dropdown[] dropdowns = new Dropdown[18];
     
     public GameObject empty;
     public GameObject item;
@@ -25,7 +24,6 @@ public class Inventory : MonoBehaviour {
         for (int i = 0; i < 18; i++)
         {
             slots[i] = GameObject.Find("Item" + (i+1));
-            dropdowns[i] = slots[i].GetComponent<Dropdown>();
             weapons[i] = empty;
             Armor[i] = empty;
         }
