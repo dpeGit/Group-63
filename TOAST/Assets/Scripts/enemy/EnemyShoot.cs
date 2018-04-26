@@ -5,20 +5,19 @@ using UnityEngine;
 public class EnemyShoot : MonoBehaviour {
 
     public GameObject projectile;
+    public float projectileSpeed;
+    public float projectileDamage;
     public float speed;
     public float contactDamage;
     public float contactCD;
     public float fireRange;
     public float fireCD;
-    public float projectileSpeed;
-    public float projectileDamage;
     public float health;
     public int expValue;
 
     private Rigidbody2D enemy;
     private GameObject player;
-    private float knockbackCD;
-    private bool isKnockBack;
+    private float stunCD;
     private float contactTimer = 0f;
     private float fireTimer = 0f;
 
@@ -26,7 +25,7 @@ public class EnemyShoot : MonoBehaviour {
     private void Start()
     {
         enemy = GetComponent<Rigidbody2D>();
-        player = GameObject.Find("player");
+        player = GameObject.FindGameObjectWithTag("player");
     }
 
     private void Update()
@@ -39,7 +38,7 @@ public class EnemyShoot : MonoBehaviour {
         cooldowns();
         contact();
 
-        if (!isKnockBack)
+        if (stunCD <= 0)
         {
             if (Vector2.Distance(player.transform.position, enemy.transform.position) >= fireRange)
             {
@@ -52,11 +51,7 @@ public class EnemyShoot : MonoBehaviour {
         }
         else
         {
-            knockbackCD -= Time.deltaTime;
-            if (knockbackCD <= 0)
-            {
-                isKnockBack = false;
-            }
+            stunCD -= Time.deltaTime;
         }
     }
 
@@ -70,6 +65,12 @@ public class EnemyShoot : MonoBehaviour {
             clone.GetComponent<Rigidbody2D>().velocity = (player.transform.position - enemy.transform.position).normalized * projectileSpeed;
             fireTimer = fireCD;
         }
+    }
+
+    private void cooldowns()
+    {
+        fireTimer -= Time.deltaTime;
+        contactTimer -= Time.deltaTime;
     }
 
     private void contact()
@@ -88,10 +89,14 @@ public class EnemyShoot : MonoBehaviour {
     //also stunned for a duration based off the weapon
     void knockback(float knockback)
     {
-        isKnockBack = true;
         enemy.velocity = Vector2.zero;
         enemy.AddForce(-(player.transform.position - enemy.transform.position).normalized * knockback);
-        knockbackCD = knockback / 500; //TODO temporrary function
+        stunCD = knockback / 500; //TODO temporrary function
+    }
+
+    void stun(float stunDuration)
+    {
+        stunCD = stunDuration;
     }
 
     void damage(float[] results)
@@ -104,11 +109,5 @@ public class EnemyShoot : MonoBehaviour {
             gameObject.SetActive(false);
             player.SendMessage("expGain", expValue);
         }
-    }
-
-    private void cooldowns()
-    {
-        fireTimer -= Time.deltaTime;
-        contactTimer -= Time.deltaTime;
     }
 }

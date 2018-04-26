@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Movement: MonoBehaviour {
 
-    public float baseSpeed, speed;
+    public float baseSpeed;
+
+    [HideInInspector]
+    public float speed;
 
     private Rigidbody2D player;
     private Vector2 playerMovement;

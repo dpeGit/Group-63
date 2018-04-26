@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class projectileContact : MonoBehaviour {
 
+    [HideInInspector]
     public float projectileDamage;
 
 

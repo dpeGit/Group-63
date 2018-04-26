@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class StabAttack: MonoBehaviour {
 
-    public float baseAttackCD, attackSpeedMult;
+    public float baseAttackCD;
     public float radius;
     public float range;
-    public float baseDamage, strengthMult, agilityMult;
+    public float baseDamage, strengthMult, agilityMult, intMult;
     public float knockback;
 
     private bool isAttacking = false;
@@ -20,7 +20,7 @@ public class StabAttack: MonoBehaviour {
     //set variables
     private void Start()
     {
-        player = GameObject.Find("player");
+        player = GameObject.FindGameObjectWithTag("player");
         updateStats();
         display = GetComponent<SpriteRenderer>();
         display.enabled = false;
@@ -114,8 +114,9 @@ public class StabAttack: MonoBehaviour {
 
     public void updateStats()
     {
-        damage = baseDamage * strengthMult * player.GetComponent<PlayerStats>().strength + baseDamage * agilityMult * player.GetComponent<PlayerStats>().agility;
-        attackCD = baseAttackCD * (1 / (attackSpeedMult * player.GetComponent<PlayerStats>().attackSpeed));
+        damage = (baseDamage * strengthMult * player.GetComponent<PlayerStats>().strength) + (baseDamage * intMult * player.GetComponent<PlayerStats>().intellect) + (baseDamage * agilityMult * player.GetComponent<PlayerStats>().agility);
+        attackCD = baseAttackCD;
+        knockback *= player.GetComponent<PlayerStats>().knockbackMult;
     }
     //uncoment this function if you need to check ranges
     /*

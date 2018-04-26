@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class playerProjectileContact : MonoBehaviour {
 
+    [HideInInspector]
     public float projectileDamage;
+    [HideInInspector]
     public float projectileKnockback;
 
     private float[] hitPackage;

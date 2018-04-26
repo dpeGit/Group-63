@@ -8,6 +8,8 @@ TagManager:
   - player
   - enemy
   - weapon
+  - empty
+  - stealth
   layers:
   - Default
   - TransparentFX

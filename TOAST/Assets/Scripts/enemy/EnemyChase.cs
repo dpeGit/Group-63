@@ -12,15 +12,14 @@ public class EnemyChase : MonoBehaviour {
 
     private GameObject player;
     private Rigidbody2D enemy;
-    private float knockbackCD;
-    private bool isKnockBack;
+    private float stunCD;
     private float contactTimer = 0f;
 
     //assigned varaibles
     private void Start()
     {
         enemy = GetComponent<Rigidbody2D>();
-        player = GameObject.Find("player");
+        player = GameObject.FindGameObjectWithTag("player");
     }
 
     //moves the enemy towards the player unless it is knocked back in which case calls the knockback function
@@ -29,17 +28,13 @@ public class EnemyChase : MonoBehaviour {
         cooldowns();
         contact();
 
-        if (!isKnockBack)
+        if (stunCD <= 0)
         {
             enemy.velocity = (player.transform.position - enemy.transform.position).normalized * speed;
         }
         else
         {
-            knockbackCD -= Time.deltaTime;
-            if(knockbackCD <= 0)
-            {
-                isKnockBack = false;
-            }
+            stunCD -= Time.deltaTime;
         }
 	}
 
@@ -64,10 +59,14 @@ public class EnemyChase : MonoBehaviour {
     //also stunned for a duration based off the weapon
     void knockback(float knockback)
     {
-        isKnockBack = true;
         enemy.velocity = Vector2.zero;
         enemy.AddForce(-(player.transform.position - enemy.transform.position).normalized * knockback);
-        knockbackCD = knockback/500; //TODO temporrary function
+        stunCD = knockback/500; //TODO temporrary function
+    }
+
+    void stun(float stunDuration)
+    {
+        stunCD = stunDuration;
     }
 
     void damage(float[] results)

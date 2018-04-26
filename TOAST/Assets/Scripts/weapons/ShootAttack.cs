@@ -16,7 +16,7 @@ public class ShootAttack : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        player = GameObject.Find("player");
+        player = GameObject.FindGameObjectWithTag("player");
 	}
 	
 	// Update is called once per frame

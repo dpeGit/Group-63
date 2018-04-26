@@ -4,48 +4,37 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour {
-    public int exp, expNeeded;
+    public int exp;
     public int level;
-    public float runSpeedMult;
-    public float currentHealth, maxHealth, baseHealth;
-    public float regenTime, baseRegenAmount, regenMult;
-    public int strength, agility;
-    public int attackSpeed;
+    public float runSpeedMult, healthMult, manaMult, armourMult, knockbackMult;
+    public int strength, agility, intellect, vitality, armour, luck; //public for testing
     public int mana;
 
-    private float regenTimer;
-    public float regenAmount;//public for testing
+    [HideInInspector]
+    public int expNeeded;
+    [HideInInspector]
+    public int currentHealth, maxHealth;
 
-	// Use this for initialization
-	void Start () {
+    private int levelsGained;
+
+    // Use this for initialization
+    void Awake () {
         exp = 0;
         expNeeded = 1000;
-        level = 1;
-        maxHealth = baseHealth;
+        level = 1;//TODO persistant player leveling
+        maxHealth = (int)(vitality * 20 * healthMult);
         currentHealth = maxHealth;
-        GetComponent<Movement>().speed = GetComponent<Movement>().baseSpeed * runSpeedMult * agility;
-        regenAmount = baseRegenAmount * regenMult * strength;
+        mana = (int) (intellect * 30 * manaMult);
+        GetComponent<Movement>().speed = GetComponent<Movement>().baseSpeed * runSpeedMult;
     }
 
     void playerDamage(float damage)
     {
-        currentHealth -= damage;
+        currentHealth  = currentHealth - (int)(damage * Math.Min((Math.Pow(damage/armour,0.5) * 0.5),1));
         Debug.Log("Player Health" + currentHealth);
         if (currentHealth <= 0)
         {
-            GameObject.Find("player").SetActive(false);
-        }
-    }
-
-    private void Update()
-    {
-        if(regenTimer <= 0)
-        {
-            hpRegen();
-        }
-        else
-        {
-            regenTimer -= Time.deltaTime;
+            gameObject.SetActive(false);
         }
     }
 
@@ -54,42 +43,9 @@ public class PlayerStats : MonoBehaviour {
         exp += expGain;
         if(exp >= expNeeded)
         {
-            levelUp();
-        }
-    }
-
-    private void levelUp()
-    {
-        exp -= expNeeded;
-        level++;
-        if(level % 5 == 0)//special things happen every 5th level
-        {
-            baseHealth += 10;
-            strength += 1;
-            agility += 1;
-            attackSpeed += 1;
-        }
-        //TODO put anything that need to happen on level up here, also consider everything here unbalenced
-        expNeeded = (int)Math.Floor(expNeeded * Math.Pow(1.01,(double) level));
-        float deltaHealth = baseHealth * (float)Math.Pow(1.01, (double)level) - maxHealth;
-        maxHealth += deltaHealth;
-        currentHealth += deltaHealth;
-        GetComponent<Movement>().speed = GetComponent<Movement>().baseSpeed * runSpeedMult * agility;
-        regenAmount = baseRegenAmount * regenMult * strength;
-        GameObject[] weapons = GameObject.FindGameObjectsWithTag("weapon");
-        foreach(GameObject i in weapons)
-        {
-            i.SendMessage("updateStats");
-        }
-    }
-
-    void hpRegen()
-    {
-        regenTimer = regenTime;
-        currentHealth += regenAmount;
-        if (currentHealth > maxHealth)
-        {
-            currentHealth = maxHealth;
+            levelsGained++;
+            exp -= expNeeded;
+            expNeeded = (int)Math.Floor(expNeeded * Math.Pow(1.01, (double)level)); //TODO balence this formular just temp for now
         }
     }
 }

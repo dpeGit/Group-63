@@ -1,0 +1,27 @@
+Okay, I just want to take a moment and write down how I want the flow of the game to go because I'm running in to an issue with trying to code. Basically up to this point I have been designing basic frameworks but now it's time to actually make the spsifics. So here I'm going to put down what I want to happen so that everyone knows why I'm putting things where I am. This is mostly for the leveling and class system for now.
+
+Menu Screen
+	Here should go the main menu stuff pretty simple mostly already done
+Level Select
+	Here is where one selects what dungeon to go in to also has the campfire
+	Campfire
+		This is where you select which class to go with, also where you take you level ups
+		To be clear this means that no leveling will happen in dungeon only exp gains
+		The level ups are also spsific to each class
+		Will need to store how many level ups a class has and store the stats seperatly
+		We will need buttons that allow the player to allocate statsups
+		Also perks would go here too
+		Those stat ups will take effect once the level up is confired
+		In other words we need to update whereever those stats are being stored
+		However as gear is only spawned inside the dungeon we only need to update gear stats once a level is selected
+		I think this about covers everything most of what this needs is UI work the formulas themselves are easy
+Dungeons
+	The basics are all here
+	The only thing I need to do here is the armour on hit
+	Also procdural genreation hopefully I can get that done tonight
+	Inventoy is in progress and so is the gear
+	For the gear all we need to do is store the players base stats in a seperate value from the stats from gear
+	then call an update stats functions which is fine because we need one any way just reusing the same code
+	on death certian things need to be recorded such as levels gained and stuff we will dive more in to this as needed
+Saves
+	I am looking in to xml files for recording persistant data it doesnt look hard we just need to decide what get put there

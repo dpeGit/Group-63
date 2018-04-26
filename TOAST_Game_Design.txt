@@ -1,0 +1,59 @@
+Classes
+	Knight
+		High health, and armor. Mediumish damage, medium magic. Just very very tanky. Increased knockback. 0.5x on ranged reload speed Strength/agility
+
+	Theif
+		Stealths when enter a room enemys do not react and player deals extra damage. Perodically reenters stealth after not taking damage. High damage low health very low armor. Moves fast. redused knockback. 0.75x on ranged. agility
+
+	Warrior
+		Extremely high health no armor. Has health regen. No magic. very high damage. Gains more damage as they take damage. cannotused range. Strength
+
+	Mage
+		Low armor low health. medium move. can cast while moving. High mana and regen. 
+	Archer
+		Medium health medium armor can use range to full effect. Shots have a chance to pierce. 
+
+Stats
+	Health
+		Base Health, healthMult, current/maxhealth
+			max = base*Mult*(level*constant) base = vitality*(constant)
+	Armour
+		% damage reduction logrithmic formula appears on gear heaier gear will slow you down without enough strength
+	
+	vitatily
+		basically just affects health appears on gear
+
+	agilty
+		affects weapon scalaing (maybe affects movespeed) appears on gear
+	
+	strength
+		affects waepon scaling and (maybe affects the weight of gear you can use) apears on gear
+	
+	Intellect
+		basically sength and agility but for spells also affects mana appears on gear
+
+	Luck
+		CRITS pickup rate appears on gear
+
+Gear
+	armour
+	some combination of the other stats
+	some can have special effects
+	
+Weapons
+	every weapon has
+		base attack damage
+		scaling based sength agilty and intellect
+		attack speed
+		crit damage
+		some can have special effects
+
+	ranged weapons will have a reload speed and if the player can move and shoot
+		(maybe charging)
+
+Magic
+	Takes mana
+	cast times
+	scales with intellect
+	damage spells
+	support spells

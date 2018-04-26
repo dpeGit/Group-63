@@ -13,7 +13,7 @@ public class PlayerHUD : MonoBehaviour {
 	
     void Start()
     {
-        player = GameObject.Find("player");
+        player = GameObject.FindGameObjectWithTag("player");
         playerStats = player.GetComponent<PlayerStats>();
     }
 
