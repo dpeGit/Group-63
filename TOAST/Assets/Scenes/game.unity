@@ -3643,7 +3643,7 @@ MonoBehaviour:
   runSpeedMult: 0.8
   healthMult: 1.5
   manaMult: 0.3
-  armourMult: 0
+  armourMult: 5
   knockbackMult: 1.5
   strength: 1
   agility: 1
