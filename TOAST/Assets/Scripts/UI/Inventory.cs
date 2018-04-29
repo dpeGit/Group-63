@@ -6,16 +6,19 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour {
 
-    GameObject[] weapons = new GameObject[18];
-    GameObject[] Armor = new GameObject[18];
-    GameObject[] slots = new GameObject[18];
-    
+
+
     public GameObject empty;
     public GameObject item;
+	public GameObject equippedWeaponSlot, equippedArmorSlot;
     public bool interactable;
-    //public GameObject equipped;
+	public Text equippedName, compareName, equippedDescription, compareDescription;
 
     private string currentInv = "";
+	private GameObject[] weapons = new GameObject[18];
+	private GameObject[] Armor = new GameObject[18];
+	private GameObject[] slots = new GameObject[18];
+	private GameObject equippedWeapon, equippedArmor;
 
 
     private void Start()
@@ -27,29 +30,82 @@ public class Inventory : MonoBehaviour {
             weapons[i] = empty;
             Armor[i] = empty;
         }
+		equippedWeapon = empty;
+		equippedArmor = empty;
         updateInv();
     }
+
+	public void switchInv(string s)
+	{
+		currentInv = s;
+		updateInv ();
+	}
 
     public void optionSelected(int num)
     {
         if (slots[num].GetComponent<Dropdown>().value == 0)
-            equip();
+            equip(num);
         if (slots[num].GetComponent<Dropdown>().value == 1)
             drop(num);
     }
 
     // called when an item is equiped
-    public void equip()
+	public void equip(int n)
     {
+		
+		if (currentInv.Equals("weapons")){
+			Debug.Log ("working");
+			if (equippedWeapon != empty)
+				onPickup (equippedWeapon);
+			equippedWeapon = weapons [n];
+			removeItem(n);
+			equippedName.text = equippedWeapon.GetComponent<WeaponStats>().name;
+			equippedDescription.text = equippedWeapon.GetComponent<WeaponStats>().description;
+			equippedWeaponSlot.GetComponent<Image>().overrideSprite = equippedWeapon.GetComponent<SpriteRenderer>().sprite;
+			equippedWeaponSlot.GetComponent<Image>().color = equippedWeapon.GetComponent<SpriteRenderer>().color;
+		}
+		else if (currentInv.Equals("Armor")){
+			Debug.Log ("working");
+			if (equippedArmor != empty)
+				onPickup (equippedArmor);
+			equippedArmor = Armor [n];
+			removeItem(n);
+			equippedName.text = equippedArmor.GetComponent<WeaponStats>().name;
+			equippedDescription.text = equippedWeapon.GetComponent<WeaponStats>().description;
+			equippedWeaponSlot.GetComponent<Image>().overrideSprite = equippedWeapon.GetComponent<SpriteRenderer>().sprite;
+			equippedWeaponSlot.GetComponent<Image>().color = equippedWeapon.GetComponent<SpriteRenderer>().color;
+		}
 
+
+		updateInv ();
     }
+	void removeItem(int i)
+	{
+		if (currentInv.Equals ("weapons")) {
+			weapons [i] = empty;
+			shift ();
+			updateInv ();
+		} 
+		else if (currentInv.Equals ("Armor")) {
+			Armor [i] = empty;
+			shift ();
+			updateInv ();
+		}
+	}
 
     public void drop(int i)
-    {
-        weapons[i] = empty;
-        shift();
-        updateInv();
-    }
+	{
+		if (currentInv.Equals ("weapons")) {
+			weapons [i] = empty;
+			shift ();
+			updateInv ();
+		} 
+		else if (currentInv.Equals ("Armor")) {
+			Armor [i] = empty;
+			shift ();
+			updateInv ();
+		}
+	}
 
     void shift()
     {
@@ -66,6 +122,19 @@ public class Inventory : MonoBehaviour {
                 i += 1;
             }
         }
+		else if (currentInv.Equals("Armor"))
+		{
+			int i = 0;
+			while (i < 17)
+			{
+				if (Armor[i] == empty && Armor[i + 1] != empty)
+				{
+					Armor[i] = Armor[i + 1];
+					Armor[i + 1] = empty;
+				}
+				i += 1;
+			}
+		}
     }
     // called when an item is picked up
     public void onPickup(GameObject item)
@@ -115,14 +184,28 @@ public class Inventory : MonoBehaviour {
             }
             else if (currentInv.Equals("Armor"))
             {
-                if (Armor[i].CompareTag("empty"))
-                    slots[i].GetComponent<Dropdown>().enabled = false;
-                else
-                    slots[i].GetComponent<Dropdown>().enabled = true;
+				if (Armor [i].CompareTag ("empty")) {
+					slots [i].GetComponent<Dropdown> ().enabled = false;
+					slots [i].GetComponent<Image> ().overrideSprite = empty.GetComponent<Image> ().sprite;
+					slots [i].GetComponent<Image> ().color = empty.GetComponent<Image> ().color;
+				} 
+				else {
+					slots [i].GetComponent<Dropdown> ().enabled = true;
+					slots [i].GetComponent<Image> ().overrideSprite = Armor [i].GetComponent<SpriteRenderer> ().sprite;
+					slots [i].GetComponent<Image> ().color = Armor [i].GetComponent<SpriteRenderer> ().color;
+				}
 
             }
         }
+		if (equippedWeapon == empty)
+			equippedWeaponSlot.GetComponent<Dropdown> ().enabled = false;
+		else
+			equippedWeaponSlot.GetComponent<Dropdown> ().enabled = true;
 
+		if (equippedArmor == empty)
+			equippedArmorSlot.GetComponent<Dropdown> ().enabled = false;
+		else
+			equippedArmorSlot.GetComponent<Dropdown> ().enabled = true;
     }
 
 
@@ -136,6 +219,18 @@ public class Inventory : MonoBehaviour {
         }
         return -1;
     }
+
+	public void displayText(int n)
+	{
+		if (currentInv.Equals("weapons")) {
+			compareName.text = weapons [n].GetComponent<WeaponStats> ().name;
+			compareDescription.text = weapons [n].GetComponent<WeaponStats> ().description;
+		}
+		else if (currentInv.Equals("Armor")) {
+			compareName.text = Armor [n].GetComponent<WeaponStats> ().name;
+			compareDescription.text = Armor [n].GetComponent<WeaponStats> ().description;
+		}
+	}
 
 
 }
