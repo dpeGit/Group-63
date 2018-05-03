@@ -100,13 +100,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 1922764205351188, guid: ca6e5bb97e6ca8c4b85f014940512e6f, type: 2}
+  projectileSpeed: 5
+  projectileDamage: 10
   speed: 1
   contactDamage: 10
   contactCD: 1
   fireRange: 5
   fireCD: 3
-  projectileSpeed: 5
-  projectileDamage: 10
   health: 100
   expValue: 300
 --- !u!212 &212277522835618322

@@ -15,6 +15,9 @@ public class PlayerStats : MonoBehaviour {
     [HideInInspector]
     public int currentHealth, maxHealth;
 
+    [HideInInspector]
+    static public int spawnPoint;
+
     private int levelsGained;
 
     // Use this for initialization
@@ -26,6 +29,27 @@ public class PlayerStats : MonoBehaviour {
         currentHealth = maxHealth;
         maxMana = (int) (intellect * 30 * manaMult);
         GetComponent<Movement>().speed = GetComponent<Movement>().baseSpeed * runSpeedMult;
+
+        switch (spawnPoint)
+        {
+            case 0://west
+                transform.position = new Vector2(-10, 0);
+                break;
+            case 1://east
+                transform.position = new Vector2(10, 0);
+                break;
+            case 2://south
+                transform.position = new Vector2(0, -5);
+                break;
+            case 3://north
+                transform.position = new Vector2(0, 5);
+                break;
+            case 4://middle
+                transform.position = new Vector2(0, 0);
+                break;
+            default:
+                break;
+        }
     }
 
     void playerDamage(float damage)

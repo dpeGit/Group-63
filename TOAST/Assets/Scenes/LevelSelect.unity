@@ -699,6 +699,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1105312288}
   - component: {fileID: 1105312289}
+  - component: {fileID: 1105312290}
   m_Layer: 5
   m_Name: AreaSelectButtons
   m_TagString: Untagged
@@ -741,6 +742,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb88572925d991f42a16a7680f0ed2f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1105312290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1105312287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd50865646c3f2e4db9c366cf325ed7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upperbound: 50
+  lowerbound: 10
 --- !u!1 &1277870792
 GameObject:
   m_ObjectHideFlags: 0
