@@ -12,6 +12,7 @@ public class LevelSelect : MonoBehaviour {
 
 	public void LoadTemple()
     {
+        GetComponent<ProceduralGeneration>().generation();
         SceneManager.LoadScene(3);
     }
 
