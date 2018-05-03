@@ -15,7 +15,7 @@ public class ProceduralGeneration : MonoBehaviour {
     // put this script in a button for loading a level
     void Start () {
         numRooms = 1;
-        Random.InitState(69);//testing thing only delete this for actual gameplay
+        Random.InitState(1);//testing thing only delete this for actual gameplay
 	}
 
     //creates a 15x15 grid then randomly places rooms within said grid
@@ -30,9 +30,13 @@ public class ProceduralGeneration : MonoBehaviour {
         //this randomly looks for an available room and assignes it to the end this can be mondified if we want the end to spawn in the more spesific location
         while (true)
         {
-            int x = Random.Range(0, 14);
-            int y = Random.Range(0, 14);
-            if (mapLayout[x, y] == 1) { mapLayout[x, y] = 4; break; }
+            int x = Random.Range(0, 15);
+            int y = Random.Range(0, 15);
+            if (mapLayout[x, y] == 1)
+            {
+                mapLayout[x, y] = 4;
+                break;
+            }
         }
 
         //randomly assignes all remains available rooms to the enemy rooms. TODO right now there are only 2 basic bitch rooms as we create more we will need to modify the Random.Range down there to accomidate
@@ -40,7 +44,7 @@ public class ProceduralGeneration : MonoBehaviour {
         {
             for(int k = 0; k < 15; k++)
             {
-                if (mapLayout[k, i] == 1) mapLayout[k, i] = Random.Range(5, 6);
+                if (mapLayout[k, i] == 1) mapLayout[k, i] = Random.Range(5, 7);
             }
         }
 

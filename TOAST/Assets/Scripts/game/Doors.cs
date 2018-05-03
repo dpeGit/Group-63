@@ -20,11 +20,11 @@ public class Doors : MonoBehaviour {
         {
             gameObject.SetActive(false);
         }
-        else if ((location[1] == 0 || ProceduralGeneration.mapLayout[location[0], location[1] - 1] == 0) && side == 2)
+        else if ((location[1] == 0 || ProceduralGeneration.mapLayout[location[0], location[1] + 1] == 0) && side == 2)
         {
             gameObject.SetActive(false);
         }
-        else if ((location[1] == 14 || ProceduralGeneration.mapLayout[location[0], location[1] + 1] == 0) && side == 3)
+        else if ((location[1] == 14 || ProceduralGeneration.mapLayout[location[0], location[1] - 1] == 0) && side == 3)
         {
             gameObject.SetActive(false);
         }
@@ -38,16 +38,27 @@ public class Doors : MonoBehaviour {
             {
                 case 0:
                     PlayerStats.spawnPoint = 1;
-                    SceneManager.LoadScene(ProceduralGeneration.mapLayout[location[0] - 1, location[1]]);
+                    location[0] -= 1;
+                    SceneManager.LoadScene(ProceduralGeneration.mapLayout[location[0], location[1]]);
+                    Debug.Log(location[0] + " " + location[1]);
                     break;
                 case 1:
-                    SceneManager.LoadScene(ProceduralGeneration.mapLayout[location[0] + 1, location[1]]);
+                    PlayerStats.spawnPoint = 0;
+                    location[0] += 1;
+                    SceneManager.LoadScene(ProceduralGeneration.mapLayout[location[0], location[1]]);
+                    Debug.Log(location[0] + " " + location[1]);
                     break;
                 case 2:
-                    SceneManager.LoadScene(ProceduralGeneration.mapLayout[location[0], location[1] - 1]);
+                    PlayerStats.spawnPoint = 3;
+                    location[1] += 1;
+                    SceneManager.LoadScene(ProceduralGeneration.mapLayout[location[0], location[1]]);
+                    Debug.Log(location[0] + " " + location[1]);
                     break;
                 case 3:
-                    SceneManager.LoadScene(ProceduralGeneration.mapLayout[location[0], location[1] + 1]);
+                    PlayerStats.spawnPoint = 2;
+                    location[1] -= 1;
+                    SceneManager.LoadScene(ProceduralGeneration.mapLayout[location[0], location[1]]);
+                    Debug.Log(location[0] + " " + location[1]);
                     break;
             }
         }

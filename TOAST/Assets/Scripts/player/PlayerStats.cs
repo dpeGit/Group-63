@@ -33,16 +33,16 @@ public class PlayerStats : MonoBehaviour {
         switch (spawnPoint)
         {
             case 0://west
-                transform.position = new Vector2(-11, 0);
+                transform.position = new Vector2(-10, 0);
                 break;
             case 1://east
-                transform.position = new Vector2(11, 0);
+                transform.position = new Vector2(10, 0);
                 break;
             case 2://south
-                transform.position = new Vector2(0, -6);
+                transform.position = new Vector2(0, -5);
                 break;
             case 3://north
-                transform.position = new Vector2(0, 6);
+                transform.position = new Vector2(0, 5);
                 break;
             case 4://middle
                 transform.position = new Vector2(0, 0);
