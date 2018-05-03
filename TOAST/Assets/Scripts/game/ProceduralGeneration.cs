@@ -56,6 +56,7 @@ public class ProceduralGeneration : MonoBehaviour {
         }
         Debug.Log(test);
         Debug.Log(numRooms);
+
     }
 
     //gives it a location of a room at x and y and the length of the branch its on determines if a room should be placed at a location adjacent to current room

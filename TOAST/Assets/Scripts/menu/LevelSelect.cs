@@ -13,6 +13,8 @@ public class LevelSelect : MonoBehaviour {
 	public void LoadTemple()
     {
         GetComponent<ProceduralGeneration>().generation();
+        Doors.location = new int[2] {7 , 7};
+        PlayerStats.spawnPoint = 4;
         SceneManager.LoadScene(3);
     }
 
