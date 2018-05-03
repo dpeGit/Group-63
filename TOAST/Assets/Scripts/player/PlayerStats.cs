@@ -8,7 +8,7 @@ public class PlayerStats : MonoBehaviour {
     public int level;
     public float runSpeedMult, healthMult, manaMult, armourMult, knockbackMult;
     public int strength, agility, intellect, vitality, armour, luck; //public for testing
-    public int mana;
+    public int currentMana, maxMana;
 
     [HideInInspector]
     public int expNeeded;
@@ -24,7 +24,7 @@ public class PlayerStats : MonoBehaviour {
         level = 1;//TODO persistant player leveling
         maxHealth = (int)(vitality * 20 * healthMult);
         currentHealth = maxHealth;
-        mana = (int) (intellect * 30 * manaMult);
+        maxMana = (int) (intellect * 30 * manaMult);
         GetComponent<Movement>().speed = GetComponent<Movement>().baseSpeed * runSpeedMult;
     }
 
