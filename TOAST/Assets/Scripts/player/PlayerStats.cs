@@ -18,7 +18,8 @@ public class PlayerStats : MonoBehaviour {
     [HideInInspector]
     static public int spawnPoint;
 
-    private int levelsGained;
+	//[HideInInspector]
+    public int levelsGained;
 
     // Use this for initialization
     void Awake () {

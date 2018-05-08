@@ -213,17 +213,18 @@ MonoBehaviour:
   manaMult: 0.3
   armourMult: 5
   knockbackMult: 1.5
-  strength: 1
-  agility: 1
-  intellect: 1
+  strength: 6
+  agility: -2
+  intellect: 4
   vitality: 20
-  armour: 50
+  armour: 46
   luck: 1
   currentMana: 0
   maxMana: 0
   expNeeded: 0
   currentHealth: 0
   maxHealth: 0
+  levelsGained: 5
 --- !u!114 &114635331401247936
 MonoBehaviour:
   m_ObjectHideFlags: 1

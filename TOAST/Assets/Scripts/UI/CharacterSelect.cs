@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class CharacterSelect : MonoBehaviour {
 
+	public static string CharacterSelected;
+
 	public void optionSelected(string character){
 		if (GameObject.Find (character).GetComponent<Dropdown> ().value == 0)
 			selectCharacter (character);
@@ -21,10 +23,13 @@ public class CharacterSelect : MonoBehaviour {
 
 	void selectCharacter(string character){
 		Debug.Log (character + " has been selected");
+		CharacterSelected = character;
 	}
 
 	void openCharacterSheet(string character){
 		Debug.Log ("Should open character sheet for " + character);
+		StatsScreen.character = character;
+		SceneManager.LoadScene (7);
 
 	}
 
