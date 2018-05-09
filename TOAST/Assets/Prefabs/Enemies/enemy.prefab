@@ -103,7 +103,7 @@ MonoBehaviour:
   contactDamage: 10
   contactCD: 1
   health: 100
-  expValue: 1000
+  expValue: 100
 --- !u!212 &212277522835618322
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -31,27 +31,31 @@ public class PlayerStats : MonoBehaviour {
         maxMana = (int) (intellect * 30 * manaMult);
         GetComponent<Movement>().speed = GetComponent<Movement>().baseSpeed * runSpeedMult;
 
-        switch (spawnPoint)
-        {
-            case 0://west
-                transform.position = new Vector2(-10, 0);
-                break;
-            case 1://east
-                transform.position = new Vector2(10, 0);
-                break;
-            case 2://south
-                transform.position = new Vector2(0, -5);
-                break;
-            case 3://north
-                transform.position = new Vector2(0, 5);
-                break;
-            case 4://middle
-                transform.position = new Vector2(0, 0);
-                break;
-            default:
-                break;
-        }
+        
     }
+	void Start(){
+		switch (spawnPoint)
+		{
+		case 0://west
+			transform.position = new Vector2(-10, 0);
+			break;
+		case 1://east
+			transform.position = new Vector2(10, 0);
+			break;
+		case 2://south
+			transform.position = new Vector2(0, -5);
+			break;
+		case 3://north
+			transform.position = new Vector2(0, 5);
+			break;
+		case 4://middle
+			transform.position = new Vector2(0, 0);
+			break;
+		default:
+			break;
+		}
+	}
+
 
     void playerDamage(float damage)
     {
@@ -68,6 +72,7 @@ public class PlayerStats : MonoBehaviour {
         exp += expGain;
         if(exp >= expNeeded)
         {
+			level++;
             levelsGained++;
             exp -= expNeeded;
             expNeeded = (int)Math.Floor(expNeeded * Math.Pow(1.01, (double)level)); //TODO balence this formular just temp for now
