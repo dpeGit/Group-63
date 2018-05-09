@@ -18,9 +18,9 @@ public class PlayerHUD : MonoBehaviour {
     }
 
 	void Update () {
-        expSlider.value = (playerStats.exp / (float)playerStats.expNeeded) * 100;
+        expSlider.value = (playerStats.exp / (float)playerStats.expNeeded);
         level.text = playerStats.level.ToString();
-        hpSlider.value = (playerStats.currentHealth / (float)playerStats.maxHealth) * 100;
-		manaSlider.value = (playerStats.currentMana / (float)playerStats.maxMana) * 100;
+        hpSlider.value = (playerStats.currentHealth / (float)playerStats.maxHealth);
+		manaSlider.value = (playerStats.currentMana / (float)playerStats.maxMana);
     }
 }
