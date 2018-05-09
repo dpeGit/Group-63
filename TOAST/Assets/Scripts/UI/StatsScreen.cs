@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class StatsScreen : MonoBehaviour {
 
@@ -156,6 +157,9 @@ public class StatsScreen : MonoBehaviour {
 		pointsText.text = points.ToString ();
 	}
 
+	public void back(){
+		SceneManager.LoadScene (2);
+	}
 
 
 }

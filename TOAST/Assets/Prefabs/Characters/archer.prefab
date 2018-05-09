@@ -48,7 +48,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1678375079971184
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,6 +271,7 @@ MonoBehaviour:
   expNeeded: -641
   currentHealth: 0
   maxHealth: 0
+  levelsGained: 0
 --- !u!114 &114931780940839152
 MonoBehaviour:
   m_ObjectHideFlags: 1

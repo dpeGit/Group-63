@@ -9,7 +9,7 @@ public class PauseMenu : MonoBehaviour {
 
     public GameObject Panel;
     public bool paused;
-    public Button ResumeButton, Temple;
+    public Button ResumeButton, ExitButton;
 
 
     private void Awake()
@@ -26,7 +26,7 @@ public class PauseMenu : MonoBehaviour {
                 Panel.gameObject.SetActive(false);
                 paused = false;
                 Time.timeScale = 1f;
-                Temple.Select();
+				ExitButton.Select();
             }
             else
             {
@@ -49,6 +49,6 @@ public class PauseMenu : MonoBehaviour {
 
     public void Exit()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }

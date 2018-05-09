@@ -33,4 +33,10 @@ public class CharacterSelect : MonoBehaviour {
 
 	}
 
+
+
+	public void back(){
+		SceneManager.LoadScene (1);
+	}
+
 }
