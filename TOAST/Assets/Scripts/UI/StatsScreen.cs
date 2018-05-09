@@ -16,8 +16,9 @@ public class StatsScreen : MonoBehaviour {
 	GameObject selected;
 	PlayerStats stats;
 
-	private GameObject[] incrementers = new GameObject[7];
-	private GameObject[] decrementers = new GameObject[7];
+	private GameObject[] incrementers = new GameObject[6];
+	private GameObject[] decrementers = new GameObject[6];
+	private int[] pointsAdded = new int[6];
 	private int points;
 
 	// Use this for initialization
@@ -33,9 +34,10 @@ public class StatsScreen : MonoBehaviour {
 		else if (character == "Archer")
 			selected = Archer;
 		
-		for (int i = 1; i < 7; i++) {
-			incrementers[i] = GameObject.Find("IncrementButton" + i);
-			decrementers[i] = GameObject.Find("DecrementButton" + i);
+		for (int i = 0; i < 6; i++) {
+			incrementers[i] = GameObject.Find("IncrementButton" + (i+1));
+			decrementers[i] = GameObject.Find("DecrementButton" + (i+1));
+			pointsAdded [i] = 0;
 		}
 
 		stats = selected.GetComponent<PlayerStats> ();
@@ -49,21 +51,27 @@ public class StatsScreen : MonoBehaviour {
 		switch (stat) {
 		case "strength":
 			stats.strength++;
+			pointsAdded [0]++;
 			break;
 		case "agility":
 			stats.agility++;
-			break;
-		case "intellect":
-			stats.intellect++;
-			break;
-		case "vitality":
-			stats.vitality++;
+			pointsAdded [1]++;
 			break;
 		case "armour":
 			stats.armour++;
+			pointsAdded [2]++;
+			break;
+		case "intellect":
+			stats.intellect++;
+			pointsAdded [3]++;
+			break;
+		case "vitality":
+			stats.vitality++;
+			pointsAdded [4]++;
 			break;
 		case "luck":
 			stats.luck++;
+			pointsAdded [5]++;
 			break;
 		}
 		points--;
@@ -75,21 +83,27 @@ public class StatsScreen : MonoBehaviour {
 		switch (stat) {
 		case "strength":
 			stats.strength--;
+			pointsAdded [0]--;
 			break;
 		case "agility":
 			stats.agility--;
-			break;
-		case "intellect":
-			stats.intellect--;
-			break;
-		case "vitality":
-			stats.vitality--;
+			pointsAdded [1]--;
 			break;
 		case "armour":
 			stats.armour--;
+			pointsAdded [2]--;
+			break;
+		case "intellect":
+			stats.intellect--;
+			pointsAdded [3]--;
+			break;
+		case "vitality":
+			stats.vitality--;
+			pointsAdded [4]--;
 			break;
 		case "luck":
 			stats.luck--;
+			pointsAdded [5]--;
 			break;
 		}
 		points++;
@@ -99,29 +113,37 @@ public class StatsScreen : MonoBehaviour {
 
 	public void lockIn(){
 		stats.levelsGained -= (stats.levelsGained - points);
+		for (int i = 0; i < 6; i++) {
+			pointsAdded [i] = 0;
+		}
+		points = stats.levelsGained;
+		updateDisplay ();
+		pointsCheck ();
 	}
 
 	void pointsCheck(){
+		//Check to see if all the points are used. If they are, deactivate buttons
 		if (points <= 0) {
-			for (int i = 1; i < 7; i++) {
+			for (int i = 0; i < 6; i++) {
 				incrementers [i].SetActive (false);
 			}
 		} 
 		else {
-			for (int i = 1; i < 7; i++) {
+			for (int i = 0; i < 6; i++) {
 				incrementers [i].SetActive (true);
 			}
 		}
-		if (points >= stats.levelsGained) {
-			for (int i = 1; i <= 6; i++) {
+		//Check to see if a stat has been increased. If it has, activate decrease buttons
+
+		for (int i = 0; i < 6; i++) {
+			if (pointsAdded [i] > 0) {
+				decrementers [i].SetActive (true);
+			} 
+			else {
 				decrementers [i].SetActive (false);
 			}
-		} 
-		else {
-			for (int i = 1; i <= 6; i++) {
-				decrementers [i].SetActive (true);
-			}
 		}
+
 	}
 
 	void updateDisplay(){

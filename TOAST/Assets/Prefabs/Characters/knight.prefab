@@ -213,11 +213,11 @@ MonoBehaviour:
   manaMult: 0.3
   armourMult: 5
   knockbackMult: 1.5
-  strength: 6
-  agility: -2
+  strength: 13
+  agility: 1
   intellect: 4
-  vitality: 20
-  armour: 46
+  vitality: 22
+  armour: 49
   luck: 1
   currentMana: 0
   maxMana: 0
