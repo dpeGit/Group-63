@@ -911,6 +911,8 @@ MonoBehaviour:
   start: {fileID: 1017701945285914, guid: 2f5046291c1a70e4f9efb852123232c6, type: 2}
   end: {fileID: 1327201348109458, guid: 74816511571165f488667afb6ef4019f, type: 2}
   blank: {fileID: 1518050066056956, guid: 56a092c08c412e44abba35f70b1642c4, type: 2}
+  currentRoom: {fileID: 1883093763104856, guid: 8a78ed8f978c3d844aee22e1a53a3b7e,
+    type: 2}
 --- !u!114 &114512799179657190
 MonoBehaviour:
   m_ObjectHideFlags: 1
