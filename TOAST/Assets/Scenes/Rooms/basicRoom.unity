@@ -970,16 +970,6 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114356139520385304, guid: d43312d9d31899b418a7ce09f188ecba,
-        type: 2}
-      propertyPath: contactCD
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114356139520385304, guid: d43312d9d31899b418a7ce09f188ecba,
-        type: 2}
-      propertyPath: projectileDamage
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d43312d9d31899b418a7ce09f188ecba, type: 2}
   m_IsPrefabParent: 0

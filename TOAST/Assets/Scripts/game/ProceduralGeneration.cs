@@ -15,7 +15,7 @@ public class ProceduralGeneration : MonoBehaviour {
     // put this script in a button for loading a level
     void Start () {
         numRooms = 1;
-        Random.InitState(1);//testing thing only delete this for actual gameplay
+        Random.InitState(2);//testing thing only delete this for actual gameplay
 	}
 
     //creates a 15x15 grid then randomly places rooms within said grid

@@ -276,6 +276,7 @@ MonoBehaviour:
   expNeeded: -641
   currentHealth: 0
   maxHealth: 0
+  levelsGained: 0
 --- !u!114 &114566254009262958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -396,7 +397,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 705a3befffeff43419609b5217a28f7b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c2014d46fc361c54c9b1aec5440a4011, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

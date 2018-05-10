@@ -12,16 +12,23 @@ public class RoomLoad : MonoBehaviour {
 	string character = CharacterSelect.CharacterSelected;
 
 	void Awake () {
-		if (character == "Knight")
-			Instantiate (Knight);
-		else if (character == "Theif")
-			Instantiate(Theif);
-		else if (character == "Warrior")
-			Instantiate(Warrior);
-		else if (character == "Mage")
-			Instantiate(Mage);
-		else if (character == "Archer")
-			Instantiate(Archer);
+        if (GameObject.FindGameObjectWithTag("player") == null)
+        {
+            if (character == "Knight")
+                Instantiate(Knight);
+            else if (character == "Theif")
+                Instantiate(Theif);
+            else if (character == "Warrior")
+                Instantiate(Warrior);
+            else if (character == "Mage")
+                Instantiate(Mage);
+            else if (character == "Archer")
+                Instantiate(Archer);
+        }
+        else
+        {
+            GameObject.FindGameObjectWithTag("player").SendMessage("spawn");
+        }
 	}
 
 }

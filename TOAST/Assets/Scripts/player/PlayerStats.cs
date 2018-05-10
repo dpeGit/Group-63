@@ -23,6 +23,7 @@ public class PlayerStats : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
+        DontDestroyOnLoad(this);
         exp = 0;
         expNeeded = 1000;
         level = 1;//TODO persistant player leveling
@@ -33,7 +34,7 @@ public class PlayerStats : MonoBehaviour {
 
         
     }
-	void Start(){
+	public void spawn(){
 		switch (spawnPoint)
 		{
 		case 0://west
