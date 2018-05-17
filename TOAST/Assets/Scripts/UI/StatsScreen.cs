@@ -14,7 +14,7 @@ public class StatsScreen : MonoBehaviour {
 	public GameObject Warrior;
 	public GameObject Mage;
 	public GameObject Archer;
-	GameObject selected;
+    var selected;
 	PlayerStats stats;
 
 	private GameObject[] incrementers = new GameObject[6];
@@ -24,26 +24,25 @@ public class StatsScreen : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if (character == "Knight")
-			selected = Knight;
-		else if (character == "Theif")
-			selected = Theif;
-		else if (character == "Warrior")
-			selected = Warrior;
-		else if (character == "Mage")
-			selected = Mage;
-		else if (character == "Archer")
-			selected = Archer;
-		
-		for (int i = 0; i < 6; i++) {
+        if (character == "Knight") {
+            KnightDatas
+        }
+        else if (character == "Theif")
+            RogueData selected;
+        else if (character == "Warrior")
+            WarriorData selected;
+        else if (character == "Mage")
+            WizzardData selected;
+        else if (character == "Archer")
+            ArcherData selected;
+
+        for (int i = 0; i < 6; i++) {
 			incrementers[i] = GameObject.Find("IncrementButton" + (i+1));
 			decrementers[i] = GameObject.Find("DecrementButton" + (i+1));
 			pointsAdded [i] = 0;
 		}
-
-		stats = selected.GetComponent<PlayerStats> ();
 		charDisplay.text = character;
-		points = stats.levelsGained;
+		points = selected.
 		updateDisplay ();
 		pointsCheck ();
 	}

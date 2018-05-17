@@ -23,7 +23,7 @@ public class EnemyChase : MonoBehaviour {
     }
 
     //moves the enemy towards the player unless it is knocked back in which case calls the knockback function
-    void FixedUpdate ()
+    private void FixedUpdate ()
     {
         cooldowns();
         contact();
@@ -57,19 +57,19 @@ public class EnemyChase : MonoBehaviour {
 
     //takes a varaiable knockback (based off the weapon) then applies a force in the opposite direction from the player
     //also stunned for a duration based off the weapon
-    void knockback(float knockback)
+    public void knockback(float knockback)
     {
         enemy.velocity = Vector2.zero;
         enemy.AddForce(-(player.transform.position - enemy.transform.position).normalized * knockback);
         stunCD = knockback/500; //TODO temporrary function
     }
 
-    void stun(float stunDuration)
+    public void stun(float stunDuration)
     {
         stunCD = stunDuration;
     }
 
-    void damage(float[] results)
+    public void damage(float[] results)
     {
         health -= results[0];
         knockback(results[1]);
