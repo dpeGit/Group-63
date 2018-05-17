@@ -11,50 +11,75 @@ public static class SaveLoad {
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Open(Application.persistentDataPath + "/playerInfo.dat", FileMode.Open);
+        bf.Serialize(file, new KnightData());
+        bf.Serialize(file, new RogueData());
+        bf.Serialize(file, new WarriorData());
+        bf.Serialize(file, new WizzardData());
+        bf.Serialize(file, new ArcherData());
+        bf.Serialize(file, new GameData());
+    }
 
+    public static void load()
+    {
+        if(File.Exists(Application.persistentDataPath + "/playerInfo.dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/playerInfo.dat", FileMode.Open);
 
+            KnightData knight = (KnightData)bf.Deserialize(file);
+        }
     }
 }
 
 //we need to set defualt values on save file creation
+
     [Serializable]
-    public class KnightData {
-        static public int exp, expNeeded;
-        static public int level, levelsGained;
-        static public float runSpeedMult, healthMult, manaMult, armourMult, knockbackMult;
-        static public int strength, agility, intellect, vitality, armour, luck;
+    public class PlayerClass {
+        public int exp, expNeeded;
+        public int level, levelsGained;
+        public float runSpeedMult, healthMult, manaMult, armourMult, knockbackMult;
+        public int strength, agility, intellect, vitality, armour, luck;
+
 }
 
     [Serializable]
-    public class RogueData {
-        static public int exp, expNeeded;
-        static public int level;
-        static public float runSpeedMult, healthMult, manaMult, armourMult, knockbackMult;
-        static public int strength, agility, intellect, vitality, armour, luck;
+    public class KnightData: PlayerClass {
+        public static new int exp, expNeeded;
+        public static new int level, levelsGained;
+        public static new float runSpeedMult, healthMult, manaMult, armourMult, knockbackMult;
+        public static new int strength, agility, intellect, vitality, armour, luck;
+}
+
+    [Serializable]
+    public class RogueData : PlayerClass {
+        public static new int exp, expNeeded;
+        public static new int level;
+        public static new float runSpeedMult, healthMult, manaMult, armourMult, knockbackMult;
+        public static new int strength, agility, intellect, vitality, armour, luck;
     }
 
     [Serializable]
-    public class WarriorData {
-        static public int exp, expNeeded;
-        static public int level;
-        static public float runSpeedMult, healthMult, manaMult, armourMult, knockbackMult;
-        static public int strength, agility, intellect, vitality, armour, luck;
+    public class WarriorData : PlayerClass {
+        public static new int exp, expNeeded;
+        public static new int level;
+        public static new float runSpeedMult, healthMult, manaMult, armourMult, knockbackMult;
+        public static new int strength, agility, intellect, vitality, armour, luck;
     }
 
     [Serializable]
-    public class WizzardData {
-        static public int exp, expNeeded;
-        static public int level;
-        static public float runSpeedMult, healthMult, manaMult, armourMult, knockbackMult;
-        static public int strength, agility, intellect, vitality, armour, luck;
+    public class WizzardData : PlayerClass {
+        public static new int exp, expNeeded;
+        public static new int level;
+        public static new float runSpeedMult, healthMult, manaMult, armourMult, knockbackMult;
+        public static new int strength, agility, intellect, vitality, armour, luck;
     }
 
     [Serializable]
-    public class ArcherData {
-        static public int exp, expNeeded;
-        static public int level;
-        static public float runSpeedMult, healthMult, manaMult, armourMult, knockbackMult;
-        static public int strength, agility, intellect, vitality, armour, luck;
+    public class ArcherData : PlayerClass {
+        public static new int exp, expNeeded;
+        public static new int level;
+        public static new float runSpeedMult, healthMult, manaMult, armourMult, knockbackMult;
+        public static new int strength, agility, intellect, vitality, armour, luck;
     }
 
     [Serializable]
