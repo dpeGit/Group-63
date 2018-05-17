@@ -30,7 +30,7 @@ public class StatsScreen : MonoBehaviour {
         else if (character == "Theif")
             RogueData selected;
         else if (character == "Warrior")
-            WarriorData selected;
+			WarriorData selected;
         else if (character == "Mage")
             WizzardData selected;
         else if (character == "Archer")
