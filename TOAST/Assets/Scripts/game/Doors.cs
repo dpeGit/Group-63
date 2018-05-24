@@ -10,6 +10,7 @@ public class Doors : MonoBehaviour {
 
     [HideInInspector]
     static public int[] location;
+	static public bool locationChanged = false;
 
     private void Start()
     {
@@ -36,29 +37,33 @@ public class Doors : MonoBehaviour {
         {
             switch (side)
             {
-                case 0:
-                    PlayerStats.spawnPoint = 1;
-                    location[0] -= 1;
-                    SceneManager.LoadScene(ProceduralGeneration.mapLayout[location[0], location[1]]);
-                    Debug.Log(location[0] + " " + location[1]);
-                    break;
+				case 0:
+					PlayerStats.spawnPoint = 1;
+					location [0] -= 1;
+					SceneManager.LoadScene (ProceduralGeneration.mapLayout [location [0], location [1]]);
+					Debug.Log (location [0] + " " + location [1]);
+					locationChanged = true;
+	                break;
                 case 1:
                     PlayerStats.spawnPoint = 0;
                     location[0] += 1;
                     SceneManager.LoadScene(ProceduralGeneration.mapLayout[location[0], location[1]]);
                     Debug.Log(location[0] + " " + location[1]);
+					locationChanged = true;
                     break;
                 case 2:
                     PlayerStats.spawnPoint = 3;
                     location[1] += 1;
                     SceneManager.LoadScene(ProceduralGeneration.mapLayout[location[0], location[1]]);
                     Debug.Log(location[0] + " " + location[1]);
+					locationChanged = true;
                     break;
                 case 3:
                     PlayerStats.spawnPoint = 2;
                     location[1] -= 1;
                     SceneManager.LoadScene(ProceduralGeneration.mapLayout[location[0], location[1]]);
                     Debug.Log(location[0] + " " + location[1]);
+					locationChanged = true;
                     break;
             }
         }

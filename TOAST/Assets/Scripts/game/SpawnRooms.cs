@@ -4,42 +4,48 @@ using UnityEngine;
 
 public class SpawnRooms : MonoBehaviour {
 
-	public GameObject rooms, start, end, blank, currentRoom;
-
-	private int[,] map = ProceduralGeneration.mapLayout;
+	public GameObject room;
+	private int[,] map;
 	private int[] location;
-	private Vector2 verticalSpacing, horizontalSpacing;
-	int rows;
-	int cols;
+	private GameObject[,] rooms;
+	private GameObject[,] layout;
+	private Vector3 verticalSpacing, horizontalSpacing;
+	private int rows, cols;
+	GameObject currentRoom;
+
 
 	void Start (){
+		
+		GetComponent<ProceduralGeneration>().generation();
+		map = ProceduralGeneration.mapLayout;
 		rows = map.GetLength (0);
 		cols = map.GetLength (1);
+		rooms = ProceduralGeneration.rooms;
 		location = Doors.location;
 		spawnRooms ();
-		verticalSpacing = new Vector2 (0, 4);
-		horizontalSpacing = new Vector2 (4, 0);
+		currentRoom = rooms [location [0], location [1]];
 	}
 
+	void update(){
+		if (Doors.locationChanged) {
+			Doors.locationChanged = false;
+			currentRoom.SetActive (false);
+			currentRoom = rooms [location [0], location [1]];
+			currentRoom.SetActive (true);
+		}
+		
+	}
+
+
+
+
 	void spawnRooms (){
-		location = new Vector2 (0, 0);
 		for (int r = 0; r < rows; r++) {
 			for (int c = 0; c < cols; c++) {
-				if (r == location [0] && c == location [1])
-					Instantiate (currentRoom, location);
-				else if (map[r,c] == 3)
-					Instantiate (start, location);
-				else if (map[r,c] == 4)
-					Instantiate (end, location);
-				else if (map[r,c] > 0)
-					Instantiate (rooms, location);
-				else
-					Instantiate (blank, location);
-				location += verticalSpacing;
+				layout[r,c] = Instantiate(rooms[r, c], Vector3.zero, new Quaternion(0,0,0,0));
 			}
-			location = Vector2 (0, 0);
-			location += r * horizontalSpacing;
 		}
+
 	}
 
 

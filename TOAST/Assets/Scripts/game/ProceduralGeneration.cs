@@ -7,8 +7,13 @@ public class ProceduralGeneration : MonoBehaviour {
     public int upperbound;
     public int lowerbound;
 
-    [HideInInspector]
+	public GameObject start, room1, room2, room3, room4, room5, room6, room7, room8, room9, room10, boss, zeroRoom;
+    
+	[HideInInspector]
     static public int[,] mapLayout;
+	static public GameObject[,] rooms;
+
+
 
     private int numRooms;
 
@@ -16,6 +21,11 @@ public class ProceduralGeneration : MonoBehaviour {
     void Start () {
         numRooms = 1;
         //Random.InitState(2);//testing thing only delete this for actual gameplay
+	}
+
+	public void createMap(){
+		generation ();
+		createRoomLayout ();
 	}
 
     //creates a 15x15 grid then randomly places rooms within said grid
@@ -148,4 +158,40 @@ public class ProceduralGeneration : MonoBehaviour {
             arr[r] = tmp;
         }
     }
+
+	//creates an array pof gameobjects which are the rooms
+	void createRoomLayout(){
+		for(int i  = 0; i < 15; i++)
+		{
+			for(int k = 0; k < 15; k++)
+			{
+				if (mapLayout [k, i] == 0)
+					rooms [k, i] = start;
+				else if (mapLayout [k, i] == 1)
+					rooms [k, i] = room1;
+				else if (mapLayout [k, i] == 2)
+					rooms [k, i] = room2;
+				else if (mapLayout [k, i] == 3)
+					rooms [k, i] = room3;
+				else if (mapLayout [k, i] == 4)
+					rooms [k, i] = room4;
+				else if (mapLayout [k, i] == 5)
+					rooms [k, i] = room5;
+				else if (mapLayout [k, i] == 6)
+					rooms [k, i] = room6;
+				else if (mapLayout [k, i] == 7)
+					rooms [k, i] = room7;
+				else if (mapLayout [k, i] == 8)
+					rooms [k, i] = room8;
+				else if (mapLayout [k, i] == 9)
+					rooms [k, i] = room9;
+				else if (mapLayout [k, i] == 10)
+					rooms [k, i] = boss;
+				else
+					rooms [k, i] = zeroRoom;
+				
+			}
+		}
+	}
+
 }
