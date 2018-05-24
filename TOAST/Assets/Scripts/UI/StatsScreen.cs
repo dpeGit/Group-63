@@ -14,25 +14,26 @@ public class StatsScreen : MonoBehaviour {
 	public GameObject Warrior;
 	public GameObject Mage;
     public GameObject Archer;
-	PlayerClass stats;
 
 	private GameObject[] incrementers = new GameObject[6];
 	private GameObject[] decrementers = new GameObject[6];
 	private int[] pointsAdded = new int[6];
 	private int points;
+    string selected;
 
 	// Use this for initialization
 	void Start () {
+        SaveLoad.load();
         if (character == "Knight")
-            stats = new KnightData();
+            selected = "knight";
         else if (character == "Theif")
-            stats = new RogueData();
+            selected = "rogue";
         else if (character == "Warrior")
-            stats = new WarriorData();
+            selected = "warrior";
         else if (character == "Mage")
-            stats = new WizzardData();
+            selected = "wizard";
         else if (character == "Archer")
-            stats = new ArcherData();
+            selected = "archer";
 
         for (int i = 0; i < 6; i++) {
 			incrementers[i] = GameObject.Find("IncrementButton" + (i+1));
@@ -40,80 +41,75 @@ public class StatsScreen : MonoBehaviour {
 			pointsAdded [i] = 0;
 		}
 		charDisplay.text = character;
+        points = (int)gameData.test[selected]["levelsGained"];
 		updateDisplay ();
 		pointsCheck ();
 	}
 
 	public void increment(string stat) {
+        gameData.test[selected][stat] = (int)gameData.test[selected][stat] + 1;
+ 
+
 		switch (stat) {
 		case "strength":
-			stats.strength++;
 			pointsAdded [0]++;
 			break;
 		case "agility":
-			stats.agility++;
 			pointsAdded [1]++;
 			break;
 		case "armour":
-			stats.armour++;
 			pointsAdded [2]++;
 			break;
 		case "intellect":
-			stats.intellect++;
 			pointsAdded [3]++;
 			break;
 		case "vitality":
-			stats.vitality++;
 			pointsAdded [4]++;
 			break;
 		case "luck":
-			stats.luck++;
 			pointsAdded [5]++;
 			break;
 		}
-		points--;
+        points--;
 		updateDisplay ();
 		pointsCheck ();
 	}
 
 	public void decrement(string stat) {
-		switch (stat) {
+        gameData.test[selected][stat] = (int)gameData.test[selected][stat] + 1;
+
+  		switch (stat) {
 		case "strength":
-			stats.strength--;
 			pointsAdded [0]--;
 			break;
 		case "agility":
-			stats.agility--;
 			pointsAdded [1]--;
 			break;
 		case "armour":
-			stats.armour--;
 			pointsAdded [2]--;
 			break;
 		case "intellect":
-			stats.intellect--;
 			pointsAdded [3]--;
 			break;
 		case "vitality":
-			stats.vitality--;
 			pointsAdded [4]--;
 			break;
 		case "luck":
-			stats.luck--;
 			pointsAdded [5]--;
 			break;
 		}
-		points++;
+        points++;
 		updateDisplay ();
 		pointsCheck ();
 	}
 
 	public void lockIn(){
-		stats.levelsGained -= (stats.levelsGained - points);
+        gameData.test[selected]["levelsGained"] = (int)gameData.test[selected]["levelsGained"] - ((int)gameData.test[selected]["levelsGained"] - points);
+
 		for (int i = 0; i < 6; i++) {
 			pointsAdded [i] = 0;
 		}
-		points = stats.levelsGained;
+		points = (int)gameData.test[selected]["levelsGained"];
 		updateDisplay ();
 		pointsCheck ();
         SaveLoad.save();
@@ -145,12 +141,12 @@ public class StatsScreen : MonoBehaviour {
 	}
 
 	void updateDisplay(){
-		strength.text = stats.strength.ToString ();
-		agility.text = stats.agility.ToString ();
-		intellect.text = stats.intellect.ToString ();
-		vitality.text = stats.vitality.ToString ();
-		armour.text = stats.armour.ToString ();
-		luck.text = stats.luck.ToString ();
+		strength.text = gameData.test[selected]["strength"].ToString ();
+		agility.text = gameData.test[selected]["agility"].ToString();
+		intellect.text = gameData.test[selected]["intellect"].ToString();
+		vitality.text = gameData.test[selected]["vitality"].ToString();
+		armour.text = gameData.test[selected]["armour"].ToString();
+		luck.text = gameData.test[selected]["luck"].ToString();
 		pointsText.text = points.ToString ();
 	}
 
