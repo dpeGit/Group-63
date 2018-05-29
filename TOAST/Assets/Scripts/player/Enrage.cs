@@ -19,10 +19,7 @@ public class Enrage : MonoBehaviour {
         {
             stats.strength++;
             oldHealth = stats.currentHealth;
-            GameObject[] weapons = GameObject.FindGameObjectsWithTag("weapon");
-            foreach (GameObject weapon in weapons){
-                weapon.SendMessage("updateStats");
-            }
+            UpdateAllTheThings.weaponUpdate();
         }
         else if(oldHealth != stats.currentHealth)
         {

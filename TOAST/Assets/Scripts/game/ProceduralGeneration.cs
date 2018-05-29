@@ -7,11 +7,11 @@ public class ProceduralGeneration : MonoBehaviour {
     public int upperbound;
     public int lowerbound;
 
-	public GameObject start, room1, room2, room3, room4, room5, room6, room7, room8, room9, room10, boss, zeroRoom;
+	public GameObject start, room1, room2, room3, room4, room5, room6, room7, room8, room9, boss;
     
 	[HideInInspector]
     static public int[,] mapLayout;
-	static public GameObject[,] rooms;
+	static public GameObject[] rooms;
 
 
 
@@ -19,21 +19,24 @@ public class ProceduralGeneration : MonoBehaviour {
 
     // put this script in a button for loading a level
     void Start () {
+        rooms = new GameObject[] {start, boss, room1, room2, room3, room4, room5, room6, room7, room8, room9 };
         numRooms = 1;
         //Random.InitState(2);//testing thing only delete this for actual gameplay
-	}
-
-	public void createMap(){
-		generation ();
-		createRoomLayout ();
 	}
 
     //creates a 15x15 grid then randomly places rooms within said grid
     public void generation()
     {
         mapLayout = new int[15, 15];
+        for(int i = 0; i < mapLayout.GetLength(0); i++)
+        {
+            for(int k = 0; k < mapLayout.GetLength(1); k++)
+            {
+                mapLayout[i, k] = -1;
+            }
+        }
 
-        mapLayout[7, 7] = 3;
+        mapLayout[7, 7] = 0;
 
         spawnRooms(7, 7, 1);
 
@@ -42,9 +45,9 @@ public class ProceduralGeneration : MonoBehaviour {
         {
             int x = Random.Range(0, 15);
             int y = Random.Range(0, 15);
-            if (mapLayout[x, y] == 1)
+            if (mapLayout[x, y] == -2)
             {
-                mapLayout[x, y] = 4;
+                mapLayout[x, y] = 1;
                 break;
             }
         }
@@ -54,7 +57,7 @@ public class ProceduralGeneration : MonoBehaviour {
         {
             for(int k = 0; k < 15; k++)
             {
-                if (mapLayout[k, i] == 1) mapLayout[k, i] = Random.Range(5, 7);
+                if (mapLayout[k, i] == -2) mapLayout[k, i] = Random.Range(2, 10);
             }
         }
 
@@ -80,19 +83,19 @@ public class ProceduralGeneration : MonoBehaviour {
         List<int> freeSpaces = new List<int>();
         if(x > 0)
         {
-            if (mapLayout[x - 1, y] == 0) freeSpaces.Add(0);
+            if (mapLayout[x - 1, y] == -1) freeSpaces.Add(0);
         }
         if (x < 14)
         {
-            if (mapLayout[x + 1, y] == 0) freeSpaces.Add(1);
+            if (mapLayout[x + 1, y] == -1) freeSpaces.Add(1);
         }
         if (y > 0)
         {
-            if (mapLayout[x, y - 1] == 0) freeSpaces.Add(2);
+            if (mapLayout[x, y - 1] == -1) freeSpaces.Add(2);
         }
         if (y < 14)
         {
-            if (mapLayout[x, y + 1] == 0) freeSpaces.Add(3);
+            if (mapLayout[x, y + 1] == -1) freeSpaces.Add(3);
         }
 
         int[] freeSpacesArr = freeSpaces.ToArray();
@@ -104,18 +107,18 @@ public class ProceduralGeneration : MonoBehaviour {
             switch (i)
             {
                 case 0:
-                    if (rollDice(branchLength)) { mapLayout[x - 1, y] = 1; numRooms++; newRooms.Add(new int[2] { x - 1, y }); }
+                    if (rollDice(branchLength)) { mapLayout[x - 1, y] = -2; numRooms++; newRooms.Add(new int[2] { x - 1, y }); }
 
                     break;
                 case 1:
-                    if (rollDice(branchLength)) { mapLayout[x + 1, y] = 1; numRooms++; newRooms.Add(new int[2] { x + 1, y }); }
+                    if (rollDice(branchLength)) { mapLayout[x + 1, y] = -2; numRooms++; newRooms.Add(new int[2] { x + 1, y }); }
 
                     break;
                 case 2:
-                    if (rollDice(branchLength)) { mapLayout[x, y - 1] = 1; numRooms++; newRooms.Add(new int[2] { x, y - 1 }); }
+                    if (rollDice(branchLength)) { mapLayout[x, y - 1] = -2; numRooms++; newRooms.Add(new int[2] { x, y - 1 }); }
                     break;
                 case 3:
-                    if (rollDice(branchLength)) { mapLayout[x, y + 1] = 1; numRooms++; newRooms.Add(new int[2] { x, y + 1 }); }
+                    if (rollDice(branchLength)) { mapLayout[x, y + 1] = -2; numRooms++; newRooms.Add(new int[2] { x, y + 1 }); }
                     break;
                 default:
                     break;
@@ -158,40 +161,4 @@ public class ProceduralGeneration : MonoBehaviour {
             arr[r] = tmp;
         }
     }
-
-	//creates an array pof gameobjects which are the rooms
-	void createRoomLayout(){
-		for(int i  = 0; i < 15; i++)
-		{
-			for(int k = 0; k < 15; k++)
-			{
-				if (mapLayout [k, i] == 0)
-					rooms [k, i] = start;
-				else if (mapLayout [k, i] == 1)
-					rooms [k, i] = room1;
-				else if (mapLayout [k, i] == 2)
-					rooms [k, i] = room2;
-				else if (mapLayout [k, i] == 3)
-					rooms [k, i] = room3;
-				else if (mapLayout [k, i] == 4)
-					rooms [k, i] = room4;
-				else if (mapLayout [k, i] == 5)
-					rooms [k, i] = room5;
-				else if (mapLayout [k, i] == 6)
-					rooms [k, i] = room6;
-				else if (mapLayout [k, i] == 7)
-					rooms [k, i] = room7;
-				else if (mapLayout [k, i] == 8)
-					rooms [k, i] = room8;
-				else if (mapLayout [k, i] == 9)
-					rooms [k, i] = room9;
-				else if (mapLayout [k, i] == 10)
-					rooms [k, i] = boss;
-				else
-					rooms [k, i] = zeroRoom;
-				
-			}
-		}
-	}
-
 }

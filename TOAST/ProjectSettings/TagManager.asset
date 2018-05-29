@@ -11,6 +11,7 @@ TagManager:
   - empty
   - stealth
   - door
+  - floor
   layers:
   - Default
   - TransparentFX

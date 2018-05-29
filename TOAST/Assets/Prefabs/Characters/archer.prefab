@@ -253,6 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f6deed8d76cf5946bfacc69cd21d80a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerClass: archer
   exp: 0
   level: 1
   runSpeedMult: 1

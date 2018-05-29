@@ -29,7 +29,7 @@ public class CharacterSelect : MonoBehaviour {
 	void openCharacterSheet(string character){
 		Debug.Log ("Should open character sheet for " + character);
 		StatsScreen.character = character;
-		SceneManager.LoadScene (7);
+		SceneManager.LoadScene (3);
 
 	}
 

@@ -15,7 +15,7 @@ public class LevelSelect : MonoBehaviour {
         GetComponent<ProceduralGeneration>().generation();
         Doors.location = new int[2] {7 , 7};
         PlayerStats.spawnPoint = 4;
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(4);
     }
 
 

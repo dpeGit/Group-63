@@ -10,22 +10,21 @@ public class Doors : MonoBehaviour {
 
     [HideInInspector]
     static public int[] location;
-	static public bool locationChanged = false;
 
     private void Start()
     {
-        if((location[0] == 0  || ProceduralGeneration.mapLayout[location[0] - 1 , location[1]] == 0) && side == 0)
+        if((location[0] == 0  || ProceduralGeneration.mapLayout[location[0] - 1 , location[1]] == -1) && side == 0)
         {
             gameObject.SetActive(false);
-        }else if((location[0] == 14 || ProceduralGeneration.mapLayout[location[0] + 1, location[1]] == 0) && side == 1)
-        {
-            gameObject.SetActive(false);
-        }
-        else if ((location[1] == 0 || ProceduralGeneration.mapLayout[location[0], location[1] + 1] == 0) && side == 2)
+        }else if((location[0] == 14 || ProceduralGeneration.mapLayout[location[0] + 1, location[1]] == -1) && side == 1)
         {
             gameObject.SetActive(false);
         }
-        else if ((location[1] == 14 || ProceduralGeneration.mapLayout[location[0], location[1] - 1] == 0) && side == 3)
+        else if ((location[1] == 0 || ProceduralGeneration.mapLayout[location[0], location[1] + 1] == -1) && side == 2)
+        {
+            gameObject.SetActive(false);
+        }
+        else if ((location[1] == 14 || ProceduralGeneration.mapLayout[location[0], location[1] - 1] == -1) && side == 3)
         {
             gameObject.SetActive(false);
         }
@@ -38,32 +37,44 @@ public class Doors : MonoBehaviour {
             switch (side)
             {
 				case 0:
-					PlayerStats.spawnPoint = 1;
+                    SpawnRooms.layout[location[0], location[1]].SetActive(false);
+
+                    PlayerStats.spawnPoint = 1;
+
 					location [0] -= 1;
-					SceneManager.LoadScene (ProceduralGeneration.mapLayout [location [0], location [1]]);
+                    SpawnRooms.layout[location[0], location[1]].SetActive(true);
+                    collision.GetComponent<PlayerStats>().spawn();
 					Debug.Log (location [0] + " " + location [1]);
-					locationChanged = true;
 	                break;
                 case 1:
+                    SpawnRooms.layout[location[0], location[1]].SetActive(false);
+
                     PlayerStats.spawnPoint = 0;
+
                     location[0] += 1;
-                    SceneManager.LoadScene(ProceduralGeneration.mapLayout[location[0], location[1]]);
+                    SpawnRooms.layout[location[0], location[1]].SetActive(true);
+                    collision.GetComponent<PlayerStats>().spawn();
                     Debug.Log(location[0] + " " + location[1]);
-					locationChanged = true;
                     break;
                 case 2:
+                    SpawnRooms.layout[location[0], location[1]].SetActive(false);
+
                     PlayerStats.spawnPoint = 3;
+
                     location[1] += 1;
-                    SceneManager.LoadScene(ProceduralGeneration.mapLayout[location[0], location[1]]);
+                    SpawnRooms.layout[location[0], location[1]].SetActive(true);
+                    collision.GetComponent<PlayerStats>().spawn();
                     Debug.Log(location[0] + " " + location[1]);
-					locationChanged = true;
                     break;
                 case 3:
+                    SpawnRooms.layout[location[0], location[1]].SetActive(false);
+
                     PlayerStats.spawnPoint = 2;
+
                     location[1] -= 1;
-                    SceneManager.LoadScene(ProceduralGeneration.mapLayout[location[0], location[1]]);
+                    SpawnRooms.layout[location[0], location[1]].SetActive(true);
+                    collision.GetComponent<PlayerStats>().spawn();
                     Debug.Log(location[0] + " " + location[1]);
-					locationChanged = true;
                     break;
             }
         }

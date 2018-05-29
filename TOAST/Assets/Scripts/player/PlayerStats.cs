@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour {
+    public string playerClass;
     public int exp;
     public int level;
     public float runSpeedMult, healthMult, manaMult, armourMult, knockbackMult;
@@ -24,12 +25,23 @@ public class PlayerStats : MonoBehaviour {
     // Use this for initialization
     void Awake () {
         DontDestroyOnLoad(this);
-        exp = 0;
-        expNeeded = 1000;
-        level = 1;//TODO persistant player leveling
-        maxHealth = (int)(vitality * 20 * healthMult);
+
+        exp = (int) GameData.data[playerClass]["exp"];
+        level = (int) GameData.data[playerClass]["level"];
+        runSpeedMult = Convert.ToSingle(GameData.data[playerClass]["runSpeedMult"]);
+        healthMult = Convert.ToSingle(GameData.data[playerClass]["healthMult"]);
+        manaMult = Convert.ToSingle(GameData.data[playerClass]["manaMult"]);
+        armourMult = Convert.ToSingle(GameData.data[playerClass]["armourMult"]);
+        knockbackMult = Convert.ToSingle(GameData.data[playerClass]["knockbackMult"]);
+        strength = (int) GameData.data[playerClass]["strength"];
+        agility = (int) GameData.data[playerClass]["agility"];
+        intellect = (int) GameData.data[playerClass]["intellect"];
+        vitality = (int) GameData.data[playerClass]["vitality"];
+        luck = (int) GameData.data[playerClass]["luck"];
+
+        UpdateAllTheThings.playerStatUpdate(this.GetComponent<PlayerStats>());
+
         currentHealth = maxHealth;
-        maxMana = (int) (intellect * 30 * manaMult);
         GetComponent<Movement>().speed = GetComponent<Movement>().baseSpeed * runSpeedMult;
 
         

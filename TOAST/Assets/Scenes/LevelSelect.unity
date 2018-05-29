@@ -929,6 +929,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperbound: 50
   lowerbound: 10
+  start: {fileID: 1605227188144914, guid: 162dec978044a174b878e3d016c00ef2, type: 2}
+  room1: {fileID: 1605227188144914, guid: 162dec978044a174b878e3d016c00ef2, type: 2}
+  room2: {fileID: 1605227188144914, guid: 162dec978044a174b878e3d016c00ef2, type: 2}
+  room3: {fileID: 1605227188144914, guid: 162dec978044a174b878e3d016c00ef2, type: 2}
+  room4: {fileID: 1605227188144914, guid: 162dec978044a174b878e3d016c00ef2, type: 2}
+  room5: {fileID: 1605227188144914, guid: 162dec978044a174b878e3d016c00ef2, type: 2}
+  room6: {fileID: 1605227188144914, guid: 162dec978044a174b878e3d016c00ef2, type: 2}
+  room7: {fileID: 1605227188144914, guid: 162dec978044a174b878e3d016c00ef2, type: 2}
+  room8: {fileID: 1605227188144914, guid: 162dec978044a174b878e3d016c00ef2, type: 2}
+  room9: {fileID: 1605227188144914, guid: 162dec978044a174b878e3d016c00ef2, type: 2}
+  boss: {fileID: 1605227188144914, guid: 162dec978044a174b878e3d016c00ef2, type: 2}
 --- !u!1 &1277870792
 GameObject:
   m_ObjectHideFlags: 0

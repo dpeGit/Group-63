@@ -14,6 +14,8 @@ public class CameraController : MonoBehaviour {
     {
         player = GameObject.FindGameObjectWithTag("player");
 
+        cameraBounds = GameObject.FindGameObjectWithTag("floor").GetComponent<SpriteRenderer>();
+
         float vertExtent = Camera.main.orthographicSize;
         float horzExtent = vertExtent * Screen.width / Screen.height;
 
