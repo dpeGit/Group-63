@@ -9,6 +9,7 @@ public class MiniMap : MonoBehaviour {
 	public GameObject rooms, start, end, blank, currentRoom;
 	GridLayoutGroup grid;
 	private int[,] map = ProceduralGeneration.mapLayout;
+	static int[] bosslocation = new int[2];
 	static GameObject[,] minimap;
 	static int[] currentlocation;
 	int rows;
@@ -23,7 +24,7 @@ public class MiniMap : MonoBehaviour {
 		grid.cellSize = new Vector2 (150 / rows, 150 / cols);
 		drawMinimap ();
 		currentlocation = Doors.location;
-		minimap [currentlocation [0], currentlocation [1]].GetComponent<Image> ().color = new Color (234, 210, 0);
+		minimap [currentlocation [0], currentlocation [1]].GetComponent<Image> ().color = new Color (234, 210, 0, 139);
 	}
 
 	void drawMinimap(){
@@ -33,17 +34,23 @@ public class MiniMap : MonoBehaviour {
 					minimap [r, c] = Instantiate (blank, mapArea.transform);
 				else {
 					minimap [r, c] = Instantiate (rooms, mapArea.transform);
-					if (map [r, c] == 1)
-						minimap [r, c].GetComponent<Image>().color = new Color(255,0,0);
+					if (map [r, c] == 1){
+						minimap [r, c].GetComponent<Image>().color = new Color(255,0,0, 139);
+						bosslocation [0] = r;
+						bosslocation [1] = c;
+					}
 				}
 			}
 		}
 	}
 	public static void setGrey(){
-		minimap [currentlocation [0], currentlocation [1]].GetComponent<Image> ().color = new Color (0, 0, 0);
+		if (currentlocation[0] == bosslocation[0] && currentlocation[1] == bosslocation[1])
+			minimap [currentlocation [0], currentlocation [1]].GetComponent<Image> ().color = new Color (255, 0, 0, 139);
+		else
+			minimap [currentlocation [0], currentlocation [1]].GetComponent<Image> ().color = new Color (0, 0, 150, 139);
 	}
 
 	public static void setGold(){
-		minimap [currentlocation [0], currentlocation [1]].GetComponent<Image> ().color = new Color (234, 210, 0);
+		minimap [currentlocation [0], currentlocation [1]].GetComponent<Image> ().color = new Color (234, 210, 0, 139);
 	}
 }
