@@ -24,6 +24,10 @@ public class RoomLoad : MonoBehaviour {
                 Instantiate(Mage);
             else if (character == "Archer")
                 Instantiate(Archer);
+            else if (character == null)
+            {
+                Instantiate(Knight);
+            }
         }
         else
         {

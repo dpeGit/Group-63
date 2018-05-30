@@ -49,6 +49,7 @@ public class PauseMenu : MonoBehaviour {
 
     public void Exit()
     {
+        GameObject.Destroy(GameObject.FindGameObjectWithTag("player"));
         SceneManager.LoadScene(1);
     }
 }

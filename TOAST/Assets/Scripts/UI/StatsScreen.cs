@@ -24,7 +24,6 @@ public class StatsScreen : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        SaveLoad.load();
         if (character == "Knight")
             selected = "knight";
         else if (character == "Theif")

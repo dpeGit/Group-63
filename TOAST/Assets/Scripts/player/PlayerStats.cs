@@ -13,7 +13,8 @@ public class PlayerStats : MonoBehaviour {
 
     [HideInInspector]
     public int expNeeded;
-    [HideInInspector]
+
+    //[HideInInspector]
     public int currentHealth, maxHealth;
 
     [HideInInspector]
@@ -27,7 +28,9 @@ public class PlayerStats : MonoBehaviour {
         DontDestroyOnLoad(this);
 
         exp = (int) GameData.data[playerClass]["exp"];
-        level = (int) GameData.data[playerClass]["level"];
+        level = (int)GameData.data[playerClass]["level"];
+        levelsGained = (int)GameData.data[playerClass]["levelsGained"];
+        expNeeded = (int)GameData.data[playerClass]["expNeeded"];
         runSpeedMult = Convert.ToSingle(GameData.data[playerClass]["runSpeedMult"]);
         healthMult = Convert.ToSingle(GameData.data[playerClass]["healthMult"]);
         manaMult = Convert.ToSingle(GameData.data[playerClass]["manaMult"]);
@@ -43,7 +46,6 @@ public class PlayerStats : MonoBehaviour {
 
         currentHealth = maxHealth;
         GetComponent<Movement>().speed = GetComponent<Movement>().baseSpeed * runSpeedMult;
-
         
     }
 	public void spawn(){
@@ -83,12 +85,17 @@ public class PlayerStats : MonoBehaviour {
     void expGain(int expGain)
     {
         exp += expGain;
+
+        GameData.data[playerClass]["exp"] = exp;
         if(exp >= expNeeded)
         {
 			level++;
             levelsGained++;
-            exp -= expNeeded;
-            expNeeded = (int)Math.Floor(expNeeded * Math.Pow(1.01, (double)level)); //TODO balence this formular just temp for now
+            expNeeded = (int)Math.Floor(expNeeded * Math.Pow(1.01, (double)level)) + expNeeded; //TODO balence this formular just temp for now
+
+            GameData.data[playerClass]["level"] = level;
+            GameData.data[playerClass]["levelsGained"] = levelsGained;
+            GameData.data[playerClass]["expNeeded"] = expNeeded;
         }
     }
 }
