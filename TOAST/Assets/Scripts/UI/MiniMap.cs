@@ -7,23 +7,23 @@ public class MiniMap : MonoBehaviour {
 
 	public GameObject mapArea;
 	public GameObject rooms, start, end, blank, currentRoom;
-
 	GridLayoutGroup grid;
 	private int[,] map = ProceduralGeneration.mapLayout;
-	private int[] location;
-	private GameObject[,] minimap;
+	static GameObject[,] minimap;
+	static int[] currentlocation;
 	int rows;
 	int cols;
+
 
 	void Start (){
 		rows = map.GetLength (0);
 		cols = map.GetLength (1);
 		minimap = new GameObject[rows, cols];
-		location = Doors.location;
 		grid = mapArea.GetComponent<GridLayoutGroup> ();
 		grid.cellSize = new Vector2 (150 / rows, 150 / cols);
 		drawMinimap ();
-		minimap [location [0], location [1]].GetComponent<Image> ().color = new Color (234, 210, 0);
+		currentlocation = Doors.location;
+		minimap [currentlocation [0], currentlocation [1]].GetComponent<Image> ().color = new Color (234, 210, 0);
 	}
 
 	void drawMinimap(){
@@ -38,11 +38,12 @@ public class MiniMap : MonoBehaviour {
 				}
 			}
 		}
-
-
+	}
+	public static void setGrey(){
+		minimap [currentlocation [0], currentlocation [1]].GetComponent<Image> ().color = new Color (0, 0, 0);
 	}
 
-	public void changeMinimapLocation(){
+	public static void setGold(){
+		minimap [currentlocation [0], currentlocation [1]].GetComponent<Image> ().color = new Color (234, 210, 0);
 	}
-
 }
