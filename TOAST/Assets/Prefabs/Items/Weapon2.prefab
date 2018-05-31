@@ -27,7 +27,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4575659374806554
 Transform:
   m_ObjectHideFlags: 1
@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 50
   description: a great magic weapon that looks suspiciously like a tomato
-  name: Tomato
+  itemName: 
 --- !u!212 &212445429116414704
 SpriteRenderer:
   m_ObjectHideFlags: 1

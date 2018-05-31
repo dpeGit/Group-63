@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1996825656843290}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 469.77072, y: 78.96779, z: 197.77574}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ade628963316bc54588ef27fcb34be94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Knight: {fileID: 1043454191572688, guid: 8698d48b9efbb07429c151d3493967d0, type: 2}
+  Knight: {fileID: 1122348604890254, guid: 8698d48b9efbb07429c151d3493967d0, type: 2}
   Theif: {fileID: 1509604371512922, guid: afb4177da0ee7a64f94c5988efab4feb, type: 2}
   Warrior: {fileID: 1451158509603492, guid: 820271ef287d9fe4e87fc7b0f0dd3863, type: 2}
   Mage: {fileID: 1625269476462424, guid: 2d80d3d9d9675ca489529b4f5e637850, type: 2}

@@ -104,6 +104,7 @@ MonoBehaviour:
   contactCD: 1
   health: 120
   expValue: 50
+  sword: {fileID: 1588798020081002, guid: c9c447fcfef8e324a878aba175eda207, type: 2}
 --- !u!212 &212277522835618322
 SpriteRenderer:
   m_ObjectHideFlags: 1

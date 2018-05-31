@@ -9,6 +9,7 @@ public class EnemyChase : MonoBehaviour {
     public float contactCD;
     public float health;
     public int expValue;
+	public GameObject sword;
 
     private GameObject player;
     private Rigidbody2D enemy;
@@ -78,6 +79,11 @@ public class EnemyChase : MonoBehaviour {
         {
             gameObject.SetActive(false);
             player.SendMessage("expGain", expValue);
+			int r = Random.Range (1, 3);
+			if (r == 1) {
+				Instantiate (sword, transform.position, new Quaternion(0,0,0,0));
+				sword.GetComponent<SpriteRenderer> ().enabled = true;
+			}
         }
     }
 }

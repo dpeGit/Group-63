@@ -8,31 +8,48 @@ public class Inventory : MonoBehaviour {
 
 
 
-    public GameObject empty;
-    public GameObject item;
-	public GameObject equippedWeaponSlot, equippedArmorSlot;
-    public bool interactable;
-	public Text equippedName, compareName, equippedDescription, compareDescription;
+    public  GameObject empty;
+	public  GameObject equippedWeaponSlot, equippedArmorSlot;
+    public  bool interactable;
+	public  Text equippedName, compareName, equippedDescription, compareDescription;
+	public static GameObject itemToPickup;
+	public GameObject inventory;
+	GameObject player;
 
-    private string currentInv = "";
-	private GameObject[] weapons = new GameObject[18];
-	private GameObject[] Armor = new GameObject[18];
-	private GameObject[] slots = new GameObject[18];
-	private GameObject equippedWeapon, equippedArmor;
+    private  string currentInv = "";
+	private  GameObject[] weapons = new GameObject[18];
+	private  GameObject[] Armor = new GameObject[18];
+	private  GameObject[] slots = new GameObject[18];
+	private  GameObject equippedWeapon, equippedArmor;
 
+	void Update () {
+		if (itemToPickup.tag != "empty") {
+			Debug.Log ("Pickup request recieved");
+			GameObject item = itemToPickup;
+			onPickup (item);
+		}
+	}
 
     private void Start()
     {
+		player = GameObject.FindGameObjectWithTag ("player");
         currentInv = "weapons";
+		inventory.SetActive(true);
         for (int i = 0; i < 18; i++)
         {
             slots[i] = GameObject.Find("Item" + (i+1));
             weapons[i] = empty;
             Armor[i] = empty;
         }
-		equippedWeapon = empty;
+		itemToPickup = empty;
+
+		equippedWeapon = player.transform.GetChild(0).gameObject;
+		equippedWeaponSlot.GetComponent<Image>().overrideSprite = equippedWeapon.GetComponent<SpriteRenderer>().sprite;
+		equippedWeaponSlot.GetComponent<Image>().color = equippedWeapon.GetComponent<SpriteRenderer>().color;
+
 		equippedArmor = empty;
         updateInv();
+		inventory.SetActive(false);
     }
 
 	public void switchInv(string s)
@@ -52,12 +69,13 @@ public class Inventory : MonoBehaviour {
     // called when an item is equiped
 	public void equip(int n)
     {
-		
+		Debug.Log ("equip item in slot" + n);
 		if (currentInv.Equals("weapons")){
 			Debug.Log ("working");
 			if (equippedWeapon != empty)
 				onPickup (equippedWeapon);
 			equippedWeapon = weapons [n];
+			Instantiate (equippedWeapon, player.transform); 
 			removeItem(n);
 			equippedName.text = equippedWeapon.GetComponent<WeaponStats>().name;
 			equippedDescription.text = equippedWeapon.GetComponent<WeaponStats>().description;
@@ -69,16 +87,18 @@ public class Inventory : MonoBehaviour {
 			if (equippedArmor != empty)
 				onPickup (equippedArmor);
 			equippedArmor = Armor [n];
+			Instantiate (equippedArmor, player.transform);
 			removeItem(n);
 			equippedName.text = equippedArmor.GetComponent<WeaponStats>().name;
 			equippedDescription.text = equippedWeapon.GetComponent<WeaponStats>().description;
-			equippedWeaponSlot.GetComponent<Image>().overrideSprite = equippedWeapon.GetComponent<SpriteRenderer>().sprite;
-			equippedWeaponSlot.GetComponent<Image>().color = equippedWeapon.GetComponent<SpriteRenderer>().color;
+			equippedArmorSlot.GetComponent<Image>().overrideSprite = equippedWeapon.GetComponent<SpriteRenderer>().sprite;
+			equippedArmorSlot.GetComponent<Image>().color = equippedWeapon.GetComponent<SpriteRenderer>().color;
 		}
 
 
 		updateInv ();
     }
+
 	void removeItem(int i)
 	{
 		if (currentInv.Equals ("weapons")) {
@@ -96,11 +116,13 @@ public class Inventory : MonoBehaviour {
     public void drop(int i)
 	{
 		if (currentInv.Equals ("weapons")) {
+			Instantiate (weapons [i], player.transform.position, new Quaternion(0,0,0,0));
 			weapons [i] = empty;
 			shift ();
 			updateInv ();
 		} 
 		else if (currentInv.Equals ("Armor")) {
+			Instantiate (Armor [i], player.transform.position, new Quaternion(0,0,0,0));
 			Armor [i] = empty;
 			shift ();
 			updateInv ();
@@ -136,8 +158,9 @@ public class Inventory : MonoBehaviour {
 			}
 		}
     }
+
     // called when an item is picked up
-    public void onPickup(GameObject item)
+    public  void onPickup(GameObject item)
     {
         int loc = 0;
 
@@ -154,13 +177,16 @@ public class Inventory : MonoBehaviour {
             if (loc >= 0)
                 Armor[loc] = item;
         }
+
+		itemToPickup = empty;
+		item.SetActive (false);
         updateInv();
     }
 
 
     // whenever an item is picked up or dropped, updateInv is called
     // updateInv makes it so that slots that have items are interactable, and slots that dont have items aren't
-    void updateInv()
+     void updateInv()
     {
         for (int i = 0; i < 18; i++)
         {
@@ -210,7 +236,7 @@ public class Inventory : MonoBehaviour {
 
 
     // finds first empty object in the invenory so that it can be replaced when an item is picked up
-    private int findFirstEmpty(GameObject[] inv)
+    private  int findFirstEmpty(GameObject[] inv)
     {
         for (int i = 0; i < 18; i++)
         {

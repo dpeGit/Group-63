@@ -122,6 +122,7 @@ MonoBehaviour:
   contactCD: 1
   health: 100
   expValue: 100
+  sword: {fileID: 1411872601833102, guid: 14114bd144b7b3143a57294f4c04d83e, type: 2}
 --- !u!212 &212277522835618322
 SpriteRenderer:
   m_ObjectHideFlags: 1

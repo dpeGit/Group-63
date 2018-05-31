@@ -8,7 +8,8 @@ using UnityEngine.EventSystems;
 public class PauseMenu : MonoBehaviour {
 
     public GameObject Panel;
-    public bool paused;
+	public GameObject Inventory;
+    public bool paused, invOpen;
     public Button ResumeButton, ExitButton;
 
 
@@ -36,7 +37,19 @@ public class PauseMenu : MonoBehaviour {
                 ResumeButton.Select();
             }
         }
-        
+		if (Input.GetKeyDown("tab"))
+		{
+			if (invOpen)
+			{
+				Inventory.gameObject.SetActive(false);
+				invOpen = false;
+			}
+			else
+			{
+				Inventory.gameObject.SetActive(true);
+				invOpen = true;
+			}
+		}
 	}
 
     public void Resume()
