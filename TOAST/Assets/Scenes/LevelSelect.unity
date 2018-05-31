@@ -929,17 +929,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperbound: 50
   lowerbound: 10
-  start: {fileID: 1605227188144914, guid: 162dec978044a174b878e3d016c00ef2, type: 2}
-  room1: {fileID: 1605227188144914, guid: 162dec978044a174b878e3d016c00ef2, type: 2}
-  room2: {fileID: 1605227188144914, guid: 162dec978044a174b878e3d016c00ef2, type: 2}
-  room3: {fileID: 1605227188144914, guid: 162dec978044a174b878e3d016c00ef2, type: 2}
-  room4: {fileID: 1605227188144914, guid: 162dec978044a174b878e3d016c00ef2, type: 2}
-  room5: {fileID: 1605227188144914, guid: 162dec978044a174b878e3d016c00ef2, type: 2}
-  room6: {fileID: 1605227188144914, guid: 162dec978044a174b878e3d016c00ef2, type: 2}
-  room7: {fileID: 1605227188144914, guid: 162dec978044a174b878e3d016c00ef2, type: 2}
+  start: {fileID: 1745643064490600, guid: e326f95db779d734f98fe493ad1c8e93, type: 2}
+  boss: {fileID: 1045186519577254, guid: 9a75cc903dd80574686fcb0bc0a07ef0, type: 2}
+  room1: {fileID: 1030038978280874, guid: f516e47d1f294814a831e1fadb58796d, type: 2}
+  room2: {fileID: 1895904982606986, guid: 1578f1b38a6330d41b42c88a28f3d794, type: 2}
+  room3: {fileID: 1753646162372254, guid: 0eacf891f5a24b54c88ada406b8ebe87, type: 2}
+  room4: {fileID: 1848506811465172, guid: 28f0a849aca39ee42b4ab9a35475b507, type: 2}
+  room5: {fileID: 1685141289836558, guid: 9301f2c4520d8784db5274e1bf2af314, type: 2}
+  room6: {fileID: 1298536789265138, guid: dd99d203f0ee6f844a866aa7d0bba190, type: 2}
+  room7: {fileID: 1796263903281884, guid: 03c8747d82ff7cd4fb10809c7caca80b, type: 2}
   room8: {fileID: 1605227188144914, guid: 162dec978044a174b878e3d016c00ef2, type: 2}
-  room9: {fileID: 1605227188144914, guid: 162dec978044a174b878e3d016c00ef2, type: 2}
-  boss: {fileID: 1605227188144914, guid: 162dec978044a174b878e3d016c00ef2, type: 2}
+  room9: {fileID: 1988264619608672, guid: 7ba4e884dc28afc49a7e206666860a1d, type: 2}
 --- !u!1 &1277870792
 GameObject:
   m_ObjectHideFlags: 0

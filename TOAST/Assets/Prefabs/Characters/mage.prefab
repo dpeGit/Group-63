@@ -128,8 +128,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1625269476462424}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 2.335, y: 0.005, z: 0}
+  m_LocalScale: {x: 2.048324, y: 2.048324, z: 2.048324}
   m_Children:
   - {fileID: 4583387354121652}
   - {fileID: 4271698820143516}
@@ -169,7 +169,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.000000029802322, y: -0.019796073}
+  m_Offset: {x: 0, y: -0.0025566071}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -180,7 +180,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.48163158, y: 0.60040784}
+  m_Size: {x: 0.67701197, y: 0.63488674}
   m_EdgeRadius: 0
 --- !u!114 &114110350117400334
 MonoBehaviour:
@@ -194,8 +194,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCD: 0.5
-  damage: 30
-  knockback: 10
+  damage: 400
+  knockback: 300
   projectileSpeed: 4
   projectile: {fileID: 1922764205351188, guid: fd137f243d2972f42840614b612ed171, type: 2}
 --- !u!114 &114447597875037008

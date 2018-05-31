@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyShoot : MonoBehaviour {
+public class BossBehavoir : MonoBehaviour {
 
     public GameObject projectile;
     public float projectileSpeed;
@@ -14,12 +14,18 @@ public class EnemyShoot : MonoBehaviour {
     public float fireCD;
     public float health;
     public int expValue;
+    public GameObject add;
 
     private Rigidbody2D enemy;
     private GameObject player;
     private float stunCD;
     private float contactTimer = 0f;
-    private float fireTimer = 0f;
+    private float fireTimer = 5f;
+    private int numShotsFired;
+    private float secondaryFireTimer = 0f;
+    private float secondaryFireCD = 0.1f;
+    private float spawnTimer = 0f;
+    private float spawnCD = 0.3f;
 
     //assigned varaibles
     private void Start()
@@ -45,6 +51,11 @@ public class EnemyShoot : MonoBehaviour {
             {
                 fireProjectile();
             }
+            if(spawnTimer <= 0)
+            {
+                Instantiate(add);
+                spawnTimer = spawnCD;
+            }
         }
         else
         {
@@ -56,11 +67,23 @@ public class EnemyShoot : MonoBehaviour {
     {
         if (fireTimer <= 0)
         {
-            GameObject clone;
-            clone = Instantiate(projectile, enemy.transform.position, new Quaternion(0, 0, 0, 0));
-            clone.GetComponent<projectileContact>().projectileDamage = projectileDamage;
-            clone.GetComponent<Rigidbody2D>().velocity = (player.transform.position - enemy.transform.position).normalized * projectileSpeed;
-            fireTimer = fireCD;
+            secondaryFireTimer -= Time.deltaTime;
+            if (numShotsFired <= 5)
+            {
+                if (secondaryFireTimer <= 0)
+                {
+                    numShotsFired++;
+                    GameObject clone = Instantiate(projectile, enemy.transform.position, new Quaternion(0, 0, 0, 0));
+                    clone.GetComponent<projectileContact>().projectileDamage = projectileDamage;
+                    clone.GetComponent<Rigidbody2D>().velocity = (player.transform.position - enemy.transform.position).normalized * projectileSpeed;
+                    secondaryFireTimer = secondaryFireCD;
+                }
+            }
+            else
+            {
+                fireTimer = fireCD;
+                numShotsFired = 0;
+            }
         }
     }
 
@@ -68,6 +91,7 @@ public class EnemyShoot : MonoBehaviour {
     {
         fireTimer -= Time.deltaTime;
         contactTimer -= Time.deltaTime;
+        spawnTimer -= Time.deltaTime;
     }
 
     private void contact()
@@ -87,7 +111,7 @@ public class EnemyShoot : MonoBehaviour {
     public void knockback(float knockback)
     {
         enemy.velocity = Vector2.zero;
-        enemy.AddForce(-(player.transform.position - enemy.transform.position).normalized * knockback);
+        enemy.AddForce(-(player.transform.position - enemy.transform.position).normalized * (knockback/10));
         stunCD = knockback / 500; //TODO temporrary function
     }
 

@@ -37,8 +37,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1712215704843664}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.88, y: 3.52, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 6.52, y: -0.59, z: 0}
+  m_LocalScale: {x: 2.0014582, y: 2.0014582, z: 2.0014582}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -75,7 +75,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0058225393, y: -0.01164487}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -86,7 +86,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.6, y: 1.6}
+  m_Size: {x: 0.6800575, y: 0.6917015}
   m_EdgeRadius: 0
 --- !u!114 &114356139520385304
 MonoBehaviour:
@@ -100,14 +100,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 1922764205351188, guid: ca6e5bb97e6ca8c4b85f014940512e6f, type: 2}
-  projectileSpeed: 1
+  projectileSpeed: 5
   projectileDamage: 150
   speed: 1
   contactDamage: 100
   contactCD: 1
-  fireRange: 3
+  fireRange: 10
   fireCD: 3
-  health: 300
+  health: 650
   expValue: 500
 --- !u!212 &212277522835618322
 SpriteRenderer:
@@ -144,7 +144,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 0fd798453a1ded849818d4adf5543991, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.52951986, g: 0.86764705, b: 0.53185177, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

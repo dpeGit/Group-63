@@ -32,51 +32,40 @@ public class Doors : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "player")
+        if (collision.tag == "player" && GameObject.FindGameObjectsWithTag("enemy").Length == 0)
         {
+
+            SpawnRooms.layout[location[0], location[1]].SetActive(false);
+            MiniMap.setGrey();
+            foreach(GameObject projectile in GameObject.FindGameObjectsWithTag("projectile"))
+            {
+                Destroy(projectile);
+            }
+
             switch (side)
             {
 			case 0:
-					SpawnRooms.layout [location [0], location [1]].SetActive (false);
-					MiniMap.setGrey ();
 					PlayerStats.spawnPoint = 1;
 					location [0] -= 1;
-					SpawnRooms.layout [location [0], location [1]].SetActive (true);
-					MiniMap.setGold ();
-					collision.GetComponent<PlayerStats> ().spawn ();
-					Debug.Log (location [0] + " " + location [1]);
 	                break;
                 case 1:
-                    SpawnRooms.layout[location[0], location[1]].SetActive(false);
-					MiniMap.setGrey ();
                     PlayerStats.spawnPoint = 0;
                     location[0] += 1;
-                    SpawnRooms.layout[location[0], location[1]].SetActive(true);
-					MiniMap.setGold ();
-                    collision.GetComponent<PlayerStats>().spawn();
-                    Debug.Log(location[0] + " " + location[1]);
                     break;
 				case 2:
-					SpawnRooms.layout [location [0], location [1]].SetActive (false);
-					MiniMap.setGrey ();
 					PlayerStats.spawnPoint = 3;
 					location [1] += 1;
-					SpawnRooms.layout [location [0], location [1]].SetActive (true);
-					MiniMap.setGold ();
-                    collision.GetComponent<PlayerStats>().spawn();
-                    Debug.Log(location[0] + " " + location[1]);
                     break;
                 case 3:
-                    SpawnRooms.layout[location[0], location[1]].SetActive(false);
-					MiniMap.setGrey ();
                     PlayerStats.spawnPoint = 2;
                     location[1] -= 1;
-                    SpawnRooms.layout[location[0], location[1]].SetActive(true);
-                    collision.GetComponent<PlayerStats>().spawn();
-                    Debug.Log(location[0] + " " + location[1]);
-					MiniMap.setGold ();
                     break;
             }
+
+            Debug.Log(location[0] + " " + location[1]);
+            SpawnRooms.layout[location[0], location[1]].SetActive(true);
+            MiniMap.setGold();
+            collision.GetComponent<PlayerStats>().spawn();
         }
     }
 }
