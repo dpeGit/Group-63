@@ -12,6 +12,7 @@ TagManager:
   - stealth
   - door
   - floor
+  - projectile
   layers:
   - Default
   - TransparentFX

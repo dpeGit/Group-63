@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 50285614882548822}
   - component: {fileID: 61627146559066520}
   - component: {fileID: 114089774815102684}
+  - component: {fileID: 95707353603963876}
   m_Layer: 0
   m_Name: balanced
   m_TagString: enemy
@@ -36,8 +37,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1712215704843664}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.88, y: 3.52, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.0079515, y: 1.1899439, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -88,6 +89,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3634319, y: 0.6447368}
   m_EdgeRadius: 0
+--- !u!95 &95707353603963876
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1712215704843664}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 933de2a066002b343a31a852e94a4091, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114089774815102684
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -99,11 +117,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfe3d49aec5d32747aa22dae6819e670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
-  contactDamage: 80
+  speed: 3
+  contactDamage: 60
   contactCD: 1
-  health: 120
-  expValue: 50
+  health: 500
+  expValue: 30
 --- !u!212 &212277522835618322
 SpriteRenderer:
   m_ObjectHideFlags: 1

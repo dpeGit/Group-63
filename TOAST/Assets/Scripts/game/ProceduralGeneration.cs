@@ -7,7 +7,7 @@ public class ProceduralGeneration : MonoBehaviour {
     public int upperbound;
     public int lowerbound;
 
-	public GameObject start, room1, room2, room3, room4, room5, room6, room7, room8, room9, boss;
+	public GameObject start, boss, room1, room2, room3, room4, room5, room6, room7, room8, room9;
     
 	[HideInInspector]
     static public int[,] mapLayout;

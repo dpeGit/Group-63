@@ -237,14 +237,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cdc27faf0ae3c8469bdd3ebc94718e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseAttackCD: 1
+  baseAttackCD: 0.3
   radius: 0.1
-  range: 0.7
-  baseDamage: 20
+  range: 1.3
+  baseDamage: 4
   strengthMult: 0.1
   agilityMult: 1.5
   intMult: 0
-  knockback: 50
+  knockback: 30
   damage: 0
   attackCD: 0
 --- !u!114 &114664803613191074
@@ -258,13 +258,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba3bc34d60746ad4bbb8eecbefe89137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseAttackCD: 3
-  range: 0.7
-  baseDamage: 30
-  strengthMult: 2
+  baseAttackCD: 2
+  range: 1.3
+  baseDamage: 10
+  strengthMult: 1.5
   agilityMult: 0
   intMult: 0
-  knockback: 300
+  knockback: 100
   damage: 0
   attackCD: 0
 --- !u!114 &114824799836184318
@@ -279,7 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCD: 0.5
-  damage: 30
+  damage: 100
   knockback: 10
   projectileSpeed: 4
   projectile: {fileID: 1922764205351188, guid: fd137f243d2972f42840614b612ed171, type: 2}
